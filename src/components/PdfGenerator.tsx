@@ -2,15 +2,18 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Download, Loader2 } from "lucide-react";
+import { Order } from "./OrderCard";
 
 interface PdfGeneratorProps {
-  order: any;
+  order: Order;
   onSuccess: () => void;
   onError: () => void;
 }
 
 export function PdfGenerator({ order, onSuccess, onError }: PdfGeneratorProps) {
   const [isGenerating, setIsGenerating] = useState(false);
+
+  const [products, setProducts] = useState<any[]>([]);
 
   // Company details
   const companyDetails = {
@@ -180,7 +183,7 @@ export function PdfGenerator({ order, onSuccess, onError }: PdfGeneratorProps) {
 
             {/* Invoice Info */}
             <View style={styles.invoiceDetails}>
-              <Text>Invoice No.: 60</Text>
+              <Text>Invoice No.: {order._id}</Text>
               <Text>Invoice Date: 17/12/2025</Text>
               <Text>Due Date: 19/03/2025</Text>
               {/* <Text>Invoice No.: {order.id}</Text>
@@ -192,12 +195,12 @@ export function PdfGenerator({ order, onSuccess, onError }: PdfGeneratorProps) {
             <View style={styles.addressSection}>
               <View style={styles.addressBox}>
                 <Text style={styles.sectionTitle}>BILL TO</Text>
-                <Text>Abhay Donga</Text>
-                <Text>D2-201, Opera Palm, Pasodara Patiya, Surat - 394190</Text>
-                <Text>Mobile: +91 7818070999</Text>
-                <Text>GSTIN: 24ABCPN6076CW</Text>
-                <Text>PAN No: 24ABCPN6076CW</Text>
-                <Text>State: Gujarat</Text>
+                <Text>{order.customerName}</Text>
+                <Text>{order.shippingAddress}</Text>
+                <Text>Mobile: {order.customerPhone}</Text>
+                <Text>Email: {order.customerEmail}</Text>
+                {/* <Text>PAN No: {order.}</Text>
+                <Text>State: Gujarat</Text> */}
                 {/* <Text>{order.customerName}</Text>
                 <Text>{order.customerAddress}</Text>
                 <Text>Mobile: {order.customerMobile}</Text>
@@ -207,11 +210,10 @@ export function PdfGenerator({ order, onSuccess, onError }: PdfGeneratorProps) {
               <View style={styles.addressBox}>
                 <Text style={styles.sectionTitle}>SHIP TO</Text>
                 <Text>Abhay Donga</Text>
-                <Text>D2-201, Opera Palm, Pasodara Patiya, Surat - 394190</Text>
-                <Text>Mobile: +91 7818070999</Text>
-                <Text>GSTIN: 24ABCPN6076CW</Text>
-                <Text>PAN No: 24ABCPN6076CW</Text>
-                <Text>State: Gujarat</Text>
+                <Text>{order.customerName}</Text>
+                <Text>{order.shippingAddress}</Text>
+                <Text>Mobile: {order.customerPhone}</Text>
+                <Text>Email: {order.customerEmail}</Text>
                 {/* <Text>{order.customerName}</Text>
                 <Text>{order.customerAddress}</Text>
                 <Text>Mobile: {order.customerMobile}</Text>
@@ -223,27 +225,27 @@ export function PdfGenerator({ order, onSuccess, onError }: PdfGeneratorProps) {
             {/* Table */}
             <View style={styles.table}>
               <View style={styles.tableHeader}>
-                <Text style={[styles.cell, styles.itemCol]}>ITEMS</Text>
-                <Text style={[styles.cell, styles.hsnCol]}>HSN</Text>
+                <Text style={[styles.cell, styles.itemCol]}>Product Id</Text>
+                <Text style={[styles.cell, styles.hsnCol]}>Color</Text>
                 <Text style={[styles.cell, styles.qtyCol]}>QTY.</Text>
-                <Text style={[styles.cell, styles.rateCol]}>RATE</Text>
-                <Text style={[styles.cell, styles.taxCol]}>TAX</Text>
-                <Text style={[styles.cell, styles.amountCol]}>AMOUNT</Text>
+                <Text style={[styles.cell, styles.rateCol]}>Size</Text>
+                <Text style={[styles.cell, styles.taxCol]}>Tax</Text>
+                <Text style={[styles.cell, styles.amountCol]}>Amount</Text>
               </View>
 
               {order.products.map((product: any, index: number) => (
                 <View key={index} style={styles.tableRow}>
                   <Text style={[styles.cell, styles.itemCol]}>
-                    Designer Kurti
+                    {product.productId}
                   </Text>
-                  <Text style={[styles.cell, styles.hsnCol]}>6404</Text>
-                  <Text style={[styles.cell, styles.qtyCol]}>2 PCS</Text>
+                  <Text style={[styles.cell, styles.hsnCol]}>{product.productColor}</Text>
+                  <Text style={[styles.cell, styles.qtyCol]}>{product.quantity} PCS</Text>
                   <Text style={[styles.cell, styles.rateCol]}>
-                    &#8377; Rs. 2750
+                    {product.productSize}
                   </Text>
-                  <Text style={[styles.cell, styles.taxCol]}>&#8377; 1650</Text>
+                  <Text style={[styles.cell, styles.taxCol]}>Rs. 1650</Text>
                   <Text style={[styles.cell, styles.amountCol]}>
-                    &#8377; 15400
+                    Rs. 15400
                   </Text>
                   {/* <Text style={[styles.cell, styles.itemCol]}>{product.name}</Text>
                   <Text style={[styles.cell, styles.hsnCol]}>{product.hsn}</Text>
@@ -258,11 +260,11 @@ export function PdfGenerator({ order, onSuccess, onError }: PdfGeneratorProps) {
             {/* Totals */}
             <View style={styles.divider} />
             <View style={styles.totalsSection}>
-              <Text>SUBTOTAL: &#8377; 25000</Text>
-              <Text>CGST @6%: &#8377; 1500</Text>
-              <Text>SGST @6%: &#8377; 1500</Text>
-              <Text>TOTAL AMOUNT: &#8377; 25000</Text>
-              <Text>Received Amount: &#8377; {order.received || 0}</Text>
+              <Text>SUBTOTAL: Rs. 25000</Text>
+              <Text>CGST @6%: Rs. 1500</Text>
+              <Text>SGST @6%: Rs. 1500</Text>
+              <Text>TOTAL AMOUNT: Rs. 25000</Text>
+              <Text>Received Amount: Rs. {order.orderPrice || 0}</Text>
               {/* <Text>SUBTOTAL: ₹ {order.subtotal}</Text>
               <Text>CGST @6%: ₹ {order.cgst}</Text>
               <Text>SGST @6%: ₹ {order.sgst}</Text>
@@ -319,7 +321,7 @@ export function PdfGenerator({ order, onSuccess, onError }: PdfGeneratorProps) {
       const url = URL.createObjectURL(blob);
       const link = document.createElement("a");
       link.href = url;
-      link.download = `invoice-${order.id}.pdf`;
+      link.download = `invoice-${order._id}.pdf`;
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);

@@ -3,10 +3,11 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 import { Toaster } from "react-hot-toast";
-const inter = Inter({ subsets: ["latin"] });
-import { SpeedInsights } from "@vercel/speed-insights/next"
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import Script from "next/script";
-import { Analytics } from "@vercel/analytics/react"
+import { Analytics } from "@vercel/analytics/react";
+
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Aavkar Fashion",
@@ -15,20 +16,19 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: Readonly<{ children: React.ReactNode }>) {
   return (
-    <ClerkProvider>
-      <html lang="en">
-          <body className={inter.className}>
-            {children}
-            <Analytics/>
-            <SpeedInsights/>
-            <Toaster />
-            <Script src="https://checkout.razorpay.com/v1/checkout.js" />
-          </body>
-      </html>
-    </ClerkProvider>
+    <html lang="en">
+      <body className={inter.className}>
+        <ClerkProvider>
+          {children}
+          <Analytics />
+          <SpeedInsights />
+          <Toaster />
+          <Script src="https://checkout.razorpay.com/v1/checkout.js" />
+          
+        </ClerkProvider>
+      </body>
+    </html>
   );
 }

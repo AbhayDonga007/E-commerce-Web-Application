@@ -32,7 +32,7 @@ import crypto from "crypto";
 import { connectMongoDB } from "@/lib/mongodb";
 import Cart from "@/models/cart";
 import Order from "@/models/orders";
-import { Product } from "@/components/Nav";
+import { CartProduct } from "@/lib/interface";
 
 export async function POST(req: NextRequest) {
   try {
@@ -66,14 +66,15 @@ export async function POST(req: NextRequest) {
       customerEmail: customer.email,
       customerPhone: customer.phone,
       shippingAddress: customer.address,
-      items: 3,
+      items: cart.products.length,
       orderPrice: cart.totalAmount,
-      products: cart.products.map((product: Product) => ({
-        productId: product._id,
-        // quantity: product.productQnt || 1,
-        // price: product.productId.customerPrize
+      products: cart.products.map((product: CartProduct) => ({
+        productId: product.productId,
+        quantity: product.productQnt || 1,
+        productColor: product.productColor,
+        productSize: product.productSize
       })),
-      status: "Pending",
+      status: "ordered",
     });
 
     console.log("Order Stored:", newOrder);

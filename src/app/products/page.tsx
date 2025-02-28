@@ -4,12 +4,18 @@ import { Footer } from "@/components/Footer";
 import Nav from "@/components/Nav";
 import { Newsletter } from "@/components/Newsletter";
 import QualityProduct from "@/components/QualityProduct";
+import { useSession } from "@clerk/nextjs";
 import React from "react";
 
 type Props = {};
 
-const page =async (props: Props) => {
+const Products =async (props: Props) => {
   // await new Promise((resolve) => setTimeout(resolve,3000));
+  const session = useSession();
+    const userId = session.session?.user.id;
+      if(userId){
+        localStorage.clear();
+      }
   return (
     <div>
       <Nav />
@@ -20,4 +26,4 @@ const page =async (props: Props) => {
   );
 };
 
-export default page;
+export default Products;

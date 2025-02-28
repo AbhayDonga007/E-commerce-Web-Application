@@ -24,12 +24,12 @@ type Props = {}
 const Banner = (props: Props) => {
   return (
     <Swiper
-      className='w-auto bg-black/30 bg-blur'
+      className='max-h-[90vh] bg-black/30 bg-blur'
       modules={[Navigation, Pagination, Scrollbar, A11y]}
       // spaceBetween={50}
       slidesPerView={1}
       // navigation
-      pagination={{ clickable: true,dynamicBullets: true}}
+      pagination={{ clickable: true, dynamicBullets: true}}
       scrollbar={{ draggable: true }}
       // onSwiper={(swiper) => console.log(swiper)}
       // onSlideChange={() => console.log('slide change')}
@@ -43,15 +43,15 @@ const Banner = (props: Props) => {
       </SwiperSlide> */}
       <SwiperSlide>
         <Image
-            className="object-cover"
-            src={b3}
+            className="object-cover"  
+            src={b1}
             alt="Picture of the author"
         />
       </SwiperSlide>
       <SwiperSlide>
         <Image
             className="object-cover"
-            src={b1}
+            src={b3}
             alt="Picture of the author"
         />
       </SwiperSlide>

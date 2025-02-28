@@ -1,7 +1,7 @@
 import Razorpay from 'razorpay'
 import { NextRequest, NextResponse } from "next/server";
 import { instance } from '@/lib/server';
-import { CartProduct } from '@/components/Nav';
+import { CartProduct } from '@/lib/interface';
 
 export async function POST(req:NextRequest) {
     try {
@@ -45,3 +45,19 @@ export async function POST(req:NextRequest) {
         return NextResponse.json({ message: "Payment Failed" }, { status: 500 });
     }
 }
+
+
+// import type { NextApiRequest, NextApiResponse } from "next";
+
+// export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+//   if (req.method === "POST") {
+//     const paymentData = req.body;
+
+//     // TODO: Verify & process payment via Stripe/Razorpay backend
+//     console.log("Received payment data:", paymentData);
+
+//     res.status(200).json({ success: true, message: "Payment successful!" });
+//   } else {
+//     res.status(405).json({ error: "Method Not Allowed" });
+//   }
+// }

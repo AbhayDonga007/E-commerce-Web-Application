@@ -7,6 +7,7 @@ import Razorpay from "razorpay";
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import crypto from "crypto";
+import GooglePayButton from "@google-pay/button-react";
 
 export interface Product {
   _id: string;
@@ -41,6 +42,9 @@ const Page = (props: Props) => {
 
   const session = useSession();
   const userId = session.session?.user.id;
+    if(userId){
+      localStorage.clear();
+    }
   const [customerdetail, setCustomerDetail] = useState({
     id: userId || "guest",
     name: "",
@@ -108,122 +112,8 @@ const Page = (props: Props) => {
     getCartData();
   }, [userId]);
 
-  /*const MakePayment = async () => {
-    console.log(list?.products);
-
-    if (
-      customerdetail.name == "" ||
-      customerdetail.email == "" ||
-      customerdetail.phone == 0
-    ) {
-      toast.error("Please fill all the details");
-      return;
-    }
-
-    const body = {
-      products: list?.products,
-    };
-    const res = await fetch(`/api/payments`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(body),
-    });
-
-    const data = await res.json();
-    console.log(data);
-
-    const options = {
-      key: process.env.ROZORPAY_API_KEY,
-      amount: Number(data.order.amount * 100),
-      currency: "INR",
-      name: "Eroe Designer",
-      description: "Test Transaction",
-      order_id: data.order.id,
-      callback_url: `/api/paymentVarification`,
-      prefill: {
-        name: customerdetail.name,
-        email: customerdetail.email,
-        contact: customerdetail.phone,
-      },
-      notes: {
-        address: customerdetail.address,
-      },
-      theme: {
-        hide_topbar: true,
-        color: "#121212",
-      },
-    };
-
-    const rzp = new (window as any).Razorpay(options);
-    // const rzp1 = new (window as any).Razorpay(options);
-    
-
-    // await fetch("/api/orders", {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify({
-    //     cart: list?.products,
-    //     order: data.order,
-    //     customerName: customerdetail.name,
-    //     customerEmail: customerdetail.email,
-    //     shippingAddress: customerdetail.address,
-    //     customerPhone: customerdetail.phone.toString(),
-    //   }),
-    // });
-
-    //   const verifyResponse = await fetch("/api/orders", {
-    //     method: "POST",
-    //     headers: {
-    //         "Content-Type": "application/json",
-    //     },
-    //     body: JSON.stringify({
-    //         razorpay_order_id: response.razorpay_order_id,
-    //         razorpay_payment_id: response.razorpay_payment_id,
-    //         razorpay_signature: response.razorpay_signature,
-    //         customerDetails: customerdetail, // Pass customer details
-    //         cart:body, // Pass cart details
-    //     }),
-    // });
-
-    // const result = await verifyResponse.json();
-    // console.log("Verification & Order Response:", result);
-
-    rzp.on("payment.success", async function (response) {
-      console.log("Payment Success Response:", response);
-      toast.success("Payment Success Response:",response)
-
-      // Send verification request with customer & cart details
-      const verifyResponse = await fetch("/api/orders", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          razorpay_order_id: response.razorpay_order_id,
-          razorpay_payment_id: response.razorpay_payment_id,
-          razorpay_signature: response.razorpay_signature,
-          customerDetails: customerdetail,
-          cart: body,
-        }),
-      });
-
-      const result = await verifyResponse.json();
-      console.log("Verification & Order Response:", result);
-      toast.success("Verification & Order Response:", result)
-    });
-
-    rzp.on("payment.failed", function (response) {
-      console.error("Payment Failed:", response.error);
-    });
-
-    rzp.open();
-  };*/
-
-  const MakePayment = async () => {
+  //  Razorpay
+    const MakePayment = async () => {
     console.log(list?.products);
 
     if (customerdetail.name === "" || customerdetail.email === "" || customerdetail.phone === 0) {
@@ -303,6 +193,26 @@ const Page = (props: Props) => {
     });
 };
 
+  // async function MakePayment(): Promise<void> {
+  //   if (
+  //     !customerdetail.name ||
+  //     !customerdetail.email ||
+  //     !customerdetail.phone
+  //   ) {
+  //     toast.error("Please fill all the details");
+  //     return;
+  //   }
+
+  //   const body = { products: list?.products };
+  //   const res = await fetch("/api/payments", {
+  //     method: "POST",
+  //     headers: { "Content-Type": "application/json" },
+  //     body: JSON.stringify(body),
+  //   });
+
+  //   const data = await res.json();
+  //   console.log("Payment Response:", data);
+  // }
 
   return (
     <>
@@ -408,7 +318,53 @@ const Page = (props: Props) => {
                   className="w-full font-bold text-white bg-red-600 hover:text-red-500 hover:bg-red-200"
                 >
                   Make Payment
-                </Button>
+                </Button> 
+                {/* <GooglePayButton
+                  environment="TEST"
+                  paymentRequest={{
+                    apiVersion: 2,
+                    apiVersionMinor: 0,
+                    allowedPaymentMethods: [
+                      {
+                        type: "CARD",
+                        parameters: {
+                          allowedAuthMethods: ["PAN_ONLY", "CRYPTOGRAM_3DS"],
+                          allowedCardNetworks: ["MASTERCARD", "VISA"],
+                        },
+                        tokenizationSpecification: {
+                          type: "PAYMENT_GATEWAY",
+                          parameters: {
+                            gateway: "example",
+                            gatewayMerchantId: "exampleGatewayMerchantId",
+                          },
+                        },
+                      },
+                    ],
+                    merchantInfo: {
+                      merchantId: "BCR2DN4T777KLLDR",
+                      merchantName: "Demo Merchant",
+                    },
+                    transactionInfo: {
+                      totalPriceStatus: "FINAL",
+                      totalPriceLabel: "Total",
+                      totalPrice: "1",
+                      currencyCode: "INR",
+                      countryCode: "IN",
+                    },
+                    shippingAddressRequired: false,
+                    callbackIntents: ["PAYMENT_AUTHORIZATION"],
+                  }}
+                  onLoadPaymentData={(paymentRequest) => {
+                    console.log("Success", paymentRequest);
+                  }}
+                  onPaymentAuthorized={(paymentData) => {
+                    console.log("Payment Authorised Success", paymentData);
+                    return { transactionState: "SUCCESS" };
+                  }}
+                  existingPaymentMethodRequired={false}
+                  buttonColor="black"
+                  buttonType="buy"
+                /> */}
               </div>
             </form>
           </div>

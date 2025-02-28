@@ -48,15 +48,6 @@ const Search = (props: Props) => {
     setSearchData(res.data);
   };
   return (
-    // <div className="relative ml-auto flex-1 sm:flex-initial">
-    //   <SearchIcon className="absolute left-2.5 top-2.5 h-4 w-4 text-gray-500 dark:text-gray-400" />
-    //   <Input
-    //     className="pl-8 sm:w-[300px] md:w-[200px] lg:w-[300px]"
-    //     placeholder="Search products..."
-    //     type="search"
-    //     name="search"
-    //   />
-    // </div>
     <div className="relative ml-auto flex-1 sm:flex-initial">
       <Button className="p-0 m-0 bg-transparent" onPressStart={onOpen}>
         <Input

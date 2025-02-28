@@ -53,7 +53,7 @@ const libre = Libre_Baskerville({
   style: "normal",
 });
 
-export function Category() {
+export function   Category() {
   return (
     <section className="w-full flex justify-center py-6">
       <div className="container grid gap-2 md:gap-12 px-4 md:px-6">
@@ -106,7 +106,7 @@ export function Category() {
                       /> */}
                       <Link
                         className="absolute inset-0 z-10"
-                        href={`/category/Designer Kurti`}
+                        href={`/category/${encodeURIComponent("Designer Kurti")}`}
                       />
                     </SwiperSlide>
                   </Swiper>
@@ -163,7 +163,7 @@ export function Category() {
                       /> */}
                       <Link
                         className="absolute inset-0 z-10"
-                        href={`/category/Elegant Pant Pair`}
+                        href={`/category/${encodeURIComponent("Elegant Pant Pair")}`}
                       />
                     </SwiperSlide>
                   </Swiper>
@@ -220,7 +220,7 @@ export function Category() {
                       /> */}
                       <Link
                         className="absolute inset-0 z-10"
-                        href={`/category/Royal Gown Collection`}
+                        href={`/category/${encodeURIComponent("Royal Gown Collection")}`}
                       />
                     </SwiperSlide>
                   </Swiper>
@@ -269,7 +269,7 @@ export function Category() {
                       />
                       <Link
                         className="absolute inset-0 z-10"
-                        href={`/category/Chic Plaza Pair`}
+                        href={`/category/${encodeURIComponent("Chic Plaza Pair")}`}
                       />
                     </SwiperSlide>
                   </Swiper>
@@ -318,7 +318,7 @@ export function Category() {
                       />
                       <Link
                         className="absolute inset-0 z-10"
-                        href={`/category/Trendy Indo Western Wear`}
+                        href={`/category/${encodeURIComponent("Trendy Indo Western Wear")}`}
                       />
                     </SwiperSlide>
                   </Swiper>
@@ -367,7 +367,7 @@ export function Category() {
                       />
                       <Link
                         className="absolute inset-0 z-10"
-                        href={`/category/Stylish Crop-Top`}
+                        href={`/category/${encodeURIComponent("Stylish Crop-Top")}`}
                       />
                     </SwiperSlide>
                   </Swiper>
@@ -416,7 +416,7 @@ export function Category() {
                       />
                       <Link
                         className="absolute inset-0 z-10"
-                        href={`/category/Modern Cord Set`}
+                        href={`/category/${encodeURIComponent("Modern Cord Set")}`}
                       />
                     </SwiperSlide>
                   </Swiper>
@@ -465,7 +465,7 @@ export function Category() {
                       />
                       <Link
                         className="absolute inset-0 z-10"
-                        href={`/category/Graceful Tunics Collection`}
+                        href={`/category/${encodeURIComponent("Graceful Tunics Collection")}`}
                       />
                     </SwiperSlide>
                   </Swiper>
@@ -522,7 +522,7 @@ export function Category() {
                       /> */}
                       <Link
                         className="absolute inset-0 z-10"
-                        href={`/category/Luxury Dripping Sarees`}
+                        href={`/category/${encodeURIComponent("Luxury Dripping Sarees")}`}
                       />
                     </SwiperSlide>
                   </Swiper>

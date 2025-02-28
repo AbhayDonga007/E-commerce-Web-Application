@@ -168,12 +168,18 @@ import { Label } from "@/components/ui/label";
 import { Button, Input } from "@nextui-org/react";
 import { AlertCircle, Loader2 } from "lucide-react";
 import axios from "axios";
+import { useSession } from "@clerk/nextjs";
 
 export default function OrdersPage() {
   const [orders, setOrders] = useState<Order[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string>("");
   const [email, setEmail] = useState<string>("");
+  const session = useSession();
+    const userId = session.session?.user.id;
+      if(userId){
+        localStorage.clear();
+      }
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -186,6 +192,8 @@ export default function OrdersPage() {
 
     try {
       const res = await axios.get<Order[]>(`/api/orders?customerEmail=${email}`);
+      console.log(res.data);
+      
       setOrders(res.data);
     } catch (err: any) {
       setOrders([]);

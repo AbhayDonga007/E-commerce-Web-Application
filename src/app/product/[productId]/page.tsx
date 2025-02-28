@@ -1,5 +1,9 @@
-import { Product } from "@/components/Product";
-import React from "react";
+"use client"
+import { ProductPage } from "@/components/ProductPage";
+import { Cart, CartProduct, Product } from "@/lib/interface";
+import { useSession } from "@clerk/nextjs";
+import axios from "axios";
+import React, { useState } from "react";
 
 type Props = {
   params: {
@@ -7,14 +11,19 @@ type Props = {
   };
 };
 
-const page =async ({ params }: Props) => {
+const ProductItem =async ({ params }: Props) => {
+  const session = useSession();
+    const userId = session.session?.user.id;
+      if(userId){
+        localStorage.clear();
+      }
   
   return(
     <div>
-        <Product id={params.productId}/>
+        <ProductPage id={params.productId}/>
     </div>
   )
 };
 
-export default page;
+export default ProductItem;
 

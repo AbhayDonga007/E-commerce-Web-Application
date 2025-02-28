@@ -77,28 +77,14 @@ export function Reels() {
               <Card isFooterBlurred className="" shadow="lg" isPressable>
                 {/* hover:scale-110 ease-in duration-300 */}
                 <CardBody className="p-0">
-                  <Swiper
-                    className="w-full bg-black/30 bg-blur"
-                    modules={[Navigation, Pagination, Scrollbar, A11y]}
-                    // spaceBetween={50}
-                    slidesPerView={1}
-                    // navigation
-                    pagination={{ clickable: true, dynamicBullets: true }}
-                    // scrollbar={{ draggable: true }}
-                    // onSwiper={(swiper) => console.log(swiper)}
-                    // onSlideChange={() => console.log('slide change')}
-                  >
-                    <SwiperSlide className="">
-                      <video
-                        src="/videos/video1.mp4"
-                        className="object-cover aspect-[9/16] w-full opacity-90 transition-opacity gap-y-3"
-                        autoPlay
-                        loop
-                        muted
-                        playsInline
-                      />
-                    </SwiperSlide>
-                  </Swiper>
+                  <video
+                    src="/videos/video1.mp4"
+                    className="object-cover aspect-[9/16] w-full opacity-90 transition-opacity gap-y-3"
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                  />
                 </CardBody>
               </Card>
             </div>
@@ -111,18 +97,6 @@ export function Reels() {
               <Card isFooterBlurred className="" shadow="lg" isPressable>
                 {/* hover:scale-110 ease-in duration-300 */}
                 <CardBody className="p-0">
-                  <Swiper
-                    className="w-full bg-black/30 bg-blur"
-                    modules={[Navigation, Pagination, Scrollbar, A11y]}
-                    // spaceBetween={50}
-                    slidesPerView={1}
-                    // navigation
-                    pagination={{ clickable: true, dynamicBullets: true }}
-                    // scrollbar={{ draggable: true }}
-                    // onSwiper={(swiper) => console.log(swiper)}
-                    // onSlideChange={() => console.log('slide change')}
-                  >
-                    <SwiperSlide className="">
                       <video
                         src="/videos/video2.mp4"
                         className="object-cover aspect-[9/16] w-full opacity-90 transition-opacity gap-y-3"
@@ -131,8 +105,6 @@ export function Reels() {
                         muted
                         playsInline
                       />
-                    </SwiperSlide>
-                  </Swiper>
                 </CardBody>
               </Card>
             </div>
@@ -145,18 +117,6 @@ export function Reels() {
               <Card isFooterBlurred className="" shadow="lg" isPressable>
                 {/* hover:scale-110 ease-in duration-300 */}
                 <CardBody className="p-0">
-                  <Swiper
-                    className="w-full bg-black/30 bg-blur"
-                    modules={[Navigation, Pagination, Scrollbar, A11y]}
-                    // spaceBetween={50}
-                    slidesPerView={1}
-                    // navigation
-                    pagination={{ clickable: true, dynamicBullets: true }}
-                    // scrollbar={{ draggable: true }}
-                    // onSwiper={(swiper) => console.log(swiper)}
-                    // onSlideChange={() => console.log('slide change')}
-                  >
-                    <SwiperSlide className="">
                       <video
                         src="/videos/video3.mp4"
                         className="object-cover aspect-[9/16] w-full opacity-90 transition-opacity gap-y-3"
@@ -165,8 +125,6 @@ export function Reels() {
                         muted
                         playsInline
                       />
-                    </SwiperSlide>
-                  </Swiper>
                 </CardBody>
               </Card>
             </div>
@@ -179,18 +137,6 @@ export function Reels() {
               <Card isFooterBlurred className="" shadow="lg" isPressable>
                 {/* hover:scale-110 ease-in duration-300 */}
                 <CardBody className="p-0">
-                  <Swiper
-                    className="w-full bg-black/30 bg-blur"
-                    modules={[Navigation, Pagination, Scrollbar, A11y]}
-                    // spaceBetween={50}
-                    slidesPerView={1}
-                    // navigation
-                    pagination={{ clickable: true, dynamicBullets: true }}
-                    // scrollbar={{ draggable: true }}
-                    // onSwiper={(swiper) => console.log(swiper)}
-                    // onSlideChange={() => console.log('slide change')}
-                  >
-                    <SwiperSlide className="">
                       <video
                         src="/videos/video4.mp4"
                         className="object-cover aspect-[9/16] w-full opacity-90 transition-opacity gap-y-3"
@@ -199,8 +145,6 @@ export function Reels() {
                         muted
                         playsInline
                       />
-                    </SwiperSlide>
-                  </Swiper>
                 </CardBody>
               </Card>
             </div>
@@ -213,18 +157,6 @@ export function Reels() {
               <Card isFooterBlurred className="" shadow="lg" isPressable>
                 {/* hover:scale-110 ease-in duration-300 */}
                 <CardBody className="p-0">
-                  <Swiper
-                    className="w-full bg-black/30 bg-blur"
-                    modules={[Navigation, Pagination, Scrollbar, A11y]}
-                    // spaceBetween={50}
-                    slidesPerView={1}
-                    // navigation
-                    pagination={{ clickable: true, dynamicBullets: true }}
-                    // scrollbar={{ draggable: true }}
-                    // onSwiper={(swiper) => console.log(swiper)}
-                    // onSlideChange={() => console.log('slide change')}
-                  >
-                    <SwiperSlide className="">
                       <video
                         src="/videos/video5.mp4"
                         className="object-cover aspect-[9/16] w-full opacity-90 transition-opacity gap-y-3"
@@ -233,8 +165,6 @@ export function Reels() {
                         muted
                         playsInline
                       />
-                    </SwiperSlide>
-                  </Swiper>
                 </CardBody>
               </Card>
             </div>
@@ -247,18 +177,6 @@ export function Reels() {
               <Card isFooterBlurred className="" shadow="lg" isPressable>
                 {/* hover:scale-110 ease-in duration-300 */}
                 <CardBody className="p-0">
-                  <Swiper
-                    className="w-full bg-black/30 bg-blur"
-                    modules={[Navigation, Pagination, Scrollbar, A11y]}
-                    // spaceBetween={50}
-                    slidesPerView={1}
-                    // navigation
-                    pagination={{ clickable: true, dynamicBullets: true }}
-                    // scrollbar={{ draggable: true }}
-                    // onSwiper={(swiper) => console.log(swiper)}
-                    // onSlideChange={() => console.log('slide change')}
-                  >
-                    <SwiperSlide className="">
                       <video
                         src="/videos/video6.mp4"
                         className="object-cover aspect-[9/16] w-full opacity-90 transition-opacity gap-y-3"
@@ -267,8 +185,6 @@ export function Reels() {
                         muted
                         playsInline
                       />
-                    </SwiperSlide>
-                  </Swiper>
                 </CardBody>
               </Card>
             </div>
@@ -281,18 +197,6 @@ export function Reels() {
               <Card isFooterBlurred className="" shadow="lg" isPressable>
                 {/* hover:scale-110 ease-in duration-300 */}
                 <CardBody className="p-0">
-                  <Swiper
-                    className="w-full bg-black/30 bg-blur"
-                    modules={[Navigation, Pagination, Scrollbar, A11y]}
-                    // spaceBetween={50}
-                    slidesPerView={1}
-                    // navigation
-                    pagination={{ clickable: true, dynamicBullets: true }}
-                    // scrollbar={{ draggable: true }}
-                    // onSwiper={(swiper) => console.log(swiper)}
-                    // onSlideChange={() => console.log('slide change')}
-                  >
-                    <SwiperSlide className="">
                       <video
                         src="/videos/video7.mp4"
                         className="object-cover aspect-[9/16] w-full opacity-90 transition-opacity gap-y-3"
@@ -301,8 +205,6 @@ export function Reels() {
                         muted
                         playsInline
                       />
-                    </SwiperSlide>
-                  </Swiper>
                 </CardBody>
               </Card>
             </div>
@@ -315,18 +217,6 @@ export function Reels() {
               <Card isFooterBlurred className="" shadow="lg" isPressable>
                 {/* hover:scale-110 ease-in duration-300 */}
                 <CardBody className="p-0">
-                  <Swiper
-                    className="w-full bg-black/30 bg-blur"
-                    modules={[Navigation, Pagination, Scrollbar, A11y]}
-                    // spaceBetween={50}
-                    slidesPerView={1}
-                    // navigation
-                    pagination={{ clickable: true, dynamicBullets: true }}
-                    // scrollbar={{ draggable: true }}
-                    // onSwiper={(swiper) => console.log(swiper)}
-                    // onSlideChange={() => console.log('slide change')}
-                  >
-                    <SwiperSlide className="">
                       <video
                         src="/videos/video8.mp4"
                         className="object-cover aspect-[9/16] w-full opacity-90 transition-opacity gap-y-3"
@@ -335,14 +225,11 @@ export function Reels() {
                         muted
                         playsInline
                       />
-                    </SwiperSlide>
-                  </Swiper>
                 </CardBody>
               </Card>
             </div>
           </div>
           {/* </BackgroundGradient> */}
-          
         </div>
       </div>
     </section>

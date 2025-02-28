@@ -26,11 +26,17 @@ import img5 from "@/images/banner5.png";
 import Nav from "@/components/Nav";
 import ShowRoom from "@/components/ShowRoom";
 import { Reels } from "@/components/Reels";
+import { useSession } from "@clerk/nextjs";
 
 type Props = {};
 
 const DashBoard = (props: Props) => {
   // await new Promise((resolve) => setTimeout(resolve,3000));
+  const session = useSession();
+    const userId = session.session?.user.id;
+      if(userId){
+        localStorage.clear();
+      }
   return (
     <>
       {/* <Button
