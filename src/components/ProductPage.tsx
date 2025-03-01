@@ -138,20 +138,19 @@ export function ProductPage(props: Props) {
           </div>
           <div className="grid gap-2 pb-3">
             <p className="text-black font-bold text-md">
-              Marketed By Aavkar Fashion and Retail
+              Marketed By Aavkar Fashion 
             </p>
             <p className="text-gray-500 font-medium text-sm">
-              G 31,32 Vinayak Aracad Opp Shrinidhi Res. Sudama Chowk Surat
-              394101
+              D2-201, Opera Palm, Pasodara Patiya, Near Kamrej, Surat - 394190
             </p>
             <p className="text-black font-bold text-md">
               Manufacturing By Eroe Designer
             </p>
             <p className="text-gray-500 font-medium text-sm">
-              Contact us: +91 99982 64004
+              Contact us: +91 7818070999
             </p>
             <p className="text-gray-500 font-medium text-sm">
-              Email: aavkarfashion71@gmail.com
+              Email: abhaydonga007@gmail.com
             </p>
           </div>
           <div className="grid">

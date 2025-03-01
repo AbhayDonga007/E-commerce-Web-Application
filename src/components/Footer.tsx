@@ -100,20 +100,19 @@ export function Footer() {
           <div className="flex flex-col gap-4">
             <Link className="text-gray-500  hover:text-gray-900" href="#">
               <Label className="capitalize">
-                SHOP-31 GROUND FLOOR, SHRI VINAYAK ARCADE, Krishna Park Twp,
-                Mota Varachha, Surat, Shiv Nagar, Gujarat 394101
+                D2- 201, Opera Palm, Pasodara Patiya, Near Kamrej, Surat - 394190
               </Label>
             </Link>
             <div className="flex items-center gap-2">
               <MailIcon className="h-5 w-5 text-gray-500 dark:text-gray-400" />
               <a className="text-gray-500 hover:text-gray-900" href="#">
-                aavkarfashion71@gmail.com
+                abhaydonga007@gmail.com
               </a>
             </div>
             <div className="flex items-center gap-2">
               <PhoneIcon className="h-5 w-5 text-gray-500 dark:text-gray-400" />
               <a className="text-gray-500 hover:text-gray-900" href="#">
-                +91 9998264004
+                +91 7818070999
               </a>
             </div>
             <div className="flex flex-row gap-3">
