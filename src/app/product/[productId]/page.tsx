@@ -1,29 +1,29 @@
-"use client"
+"use client";
 import { ProductPage } from "@/components/ProductPage";
-import { Cart, CartProduct, Product } from "@/lib/interface";
 import { useSession } from "@clerk/nextjs";
-import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect } from "react";
+import { use } from "react";
 
 type Props = {
-  params: {
-    productId: string;
-  };
+  params: Promise<{ productId: string }>;
 };
 
-const ProductItem =async ({ params }: Props) => {
+const ProductItem = ({ params }: Props) => {
+  const { productId } = use(params); // Unwrap params using React.use()
   const session = useSession();
-    const userId = session.session?.user.id;
-      if(userId){
-        localStorage.clear();
-      }
-  
-  return(
+  const userId = session.session?.user.id;
+
+  useEffect(() => {
+    if (userId) {
+      localStorage.clear();
+    }
+  }, [userId]);
+
+  return (
     <div>
-        <ProductPage id={params.productId}/>
+      <ProductPage id={productId} />
     </div>
-  )
+  );
 };
 
 export default ProductItem;
-

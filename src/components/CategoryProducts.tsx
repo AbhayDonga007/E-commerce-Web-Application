@@ -1,13 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { BackgroundGradient } from "./ui/background-gradient";
-import {
-  Button,
-  Card,
-  CardBody,
-  CardFooter,
-  CardHeader,
-} from "@nextui-org/react";
+
 import Link from "next/link";
 import { ShoppingCart } from "lucide-react";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -15,6 +9,7 @@ import { A11y, Navigation, Pagination, Scrollbar } from "swiper/modules";
 import Image from "next/image";
 import { Pacifico } from "next/font/google";
 import { Libre_Baskerville } from "next/font/google";
+import { Button, Card, CardBody, CardFooter, CardHeader } from "@heroui/react";
 const pacifico = Pacifico({
   subsets: ["latin"],
   weight: "400",

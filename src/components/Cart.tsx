@@ -23,95 +23,11 @@ import { useSession } from "@clerk/nextjs";
 import { Cart, CartProduct } from "@/lib/interface";
 
 const CartComponent = () => {
-  const { cart, setCart } = useCart();
+  const { cart, handleInc, handleDec } = useCart();
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const session = useSession();
   const userId = session.session?.user.id;
-
-  const handleInc = async (productId: string) => {
-    try {
-      if (!userId) {
-        // Guest user: Update localStorage
-        const localCart = JSON.parse(localStorage.getItem("guestCart") || "[]");
   
-        const updatedCart = localCart.map((item: CartProduct) =>
-          item.productId._id === productId
-            ? { ...item, productQnt: item.productQnt + 1 }
-            : item
-        );
-  
-        localStorage.setItem("guestCart", JSON.stringify(updatedCart));
-        setCart({ userId: "guest", products: updatedCart });
-      } else {
-        // Logged-in user: Update database
-        await axios.post("/api/cartIncrement", { productId, userId });
-  
-        setCart((prevCart) => {
-          if (!prevCart) return { userId, products: [] };
-  
-          return {
-            ...prevCart,
-            products: prevCart.products.map((item) =>
-              item.productId._id === productId
-                ? { ...item, productQnt: item.productQnt + 1 }
-                : item
-            ),
-          };
-        });
-      }
-    } catch (error) {
-      console.error("Error incrementing product quantity", error);
-    }
-  };
-  
-  
-  
-
-  const handleDec = async (productId: string) => {
-    try {
-      if (!userId) {
-        // Guest user: Update localStorage
-        const localCart = JSON.parse(localStorage.getItem("guestCart") || "[]");
-  
-        const updatedCart = localCart
-          .map((item: CartProduct) =>
-            item.productId._id === productId
-              ? { ...item, productQnt: item.productQnt - 1 }
-              : item
-          )
-          .filter((item: CartProduct) => item.productQnt > 0); // Remove if quantity is 0
-  
-        localStorage.setItem("guestCart", JSON.stringify(updatedCart));
-        setCart({ userId: "guest", products: updatedCart });
-      } else {
-        // Logged-in user: Update database
-        await axios.post("/api/cartDecrement", { productId, userId });
-  
-        setCart((prevCart) => {
-          if (!prevCart) return { userId, products: [] };
-  
-          return {
-            ...prevCart,
-            products: prevCart.products
-              .map((item) =>
-                item.productId._id === productId
-                  ? { ...item, productQnt: item.productQnt - 1 }
-                  : item
-              )
-              .filter((item) => item.productQnt > 0),
-          };
-        });
-      }
-    } catch (error) {
-      console.error("Error decrementing product quantity", error);
-    }
-  };
-  
-  
-  
-
-  
-
   return (
     <>
       <Badge

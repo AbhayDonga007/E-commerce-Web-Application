@@ -1,20 +1,18 @@
 "use client";
+import { use } from "react";
 import CategoryProducts from "@/components/CategoryProducts";
 import Nav from "@/components/Nav";
 import axios from "axios";
-import { useEffect, useState } from "react";
-import { useRouter } from "next/router";
-import Link from "next/link";
+import { useEffect } from "react";
 
-type Props = {
-  params: {
-    categoryName: string;
-  };
+type PageProps = {
+  params: Promise<{ categoryName: string }>;
 };
 
-const Page = ({ params }: Props) => {
-  // Decode category name to handle spaces correctly
-  const name = decodeURIComponent(params.categoryName);
+const Page = ({ params }: PageProps) => {
+  // Unwrap the params using React.use()
+  const { categoryName } = use(params);
+  const name = decodeURIComponent(categoryName);
 
   useEffect(() => {
     const getData = async () => {

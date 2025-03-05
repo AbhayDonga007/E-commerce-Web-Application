@@ -5,29 +5,8 @@ import {
   SignedOut,
   SignInButton,
   UserButton,
-  useSession,
 } from "@clerk/nextjs";
 import Logo from "./Logo";
-import {
-  Badge,
-  Button,
-  ButtonGroup,
-  Card,
-  CardBody,
-  CardFooter,
-  CardHeader,
-  Dropdown,
-  DropdownItem,
-  DropdownMenu,
-  DropdownTrigger,
-  Image,
-  Modal,
-  ModalBody,
-  ModalContent,
-  ModalFooter,
-  ModalHeader,
-  useDisclosure,
-} from "@nextui-org/react";
 import { MenuIcon, ShoppingCart } from "lucide-react";
 import { useEffect, useState } from "react";
 import axios from "axios";
@@ -36,6 +15,7 @@ import Search from "./Search";
 import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet";
 import Cart from "./Cart";
 import CartComponent from "./Cart";
+import { Button, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger } from "@heroui/react";
 
 const items = [
   { key: "Designer Kurti", label: "Designer Kurti" },
@@ -73,7 +53,8 @@ export default function Nav() {
               {(item) => (
                 <DropdownItem
                   key={item.key}
-                  href={`/category/${item.label}`}
+                  // href={`/category/${item.label}`}
+                  href={`/category/${encodeURIComponent(item.label)}`}
                   variant="faded"
                 >
                   {item.label}

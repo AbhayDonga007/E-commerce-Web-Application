@@ -8,6 +8,8 @@ interface CartContextProps {
   cart: Cart | null;
   setCart: (cart: Cart) => void;
   addToCart: (newProduct: CartProduct) => Promise<void>;
+  handleInc: (productId: string) => Promise<void>;
+  handleDec: (productId: string) => Promise<void>;
 }
 
 const CartContext = createContext<CartContextProps | null>(null);
@@ -17,11 +19,9 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
   const session = useSession();
   const userId = session.session?.user.id;
 
-  // Use useCallback to stabilize the function
   const fetchCart = useCallback(async () => {
     if (!userId) {
-      // Get guest cart from local storage
-      const localCart = JSON.parse(localStorage.getItem("guestCart") || "[]");
+      const localCart: CartProduct[] = JSON.parse(localStorage.getItem("guestCart") || "[]");
       setCart({ userId: "guest", products: localCart });
     } else {
       try {
@@ -39,7 +39,7 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
 
   const addToCart = async (newProduct: CartProduct) => {
     if (!userId) {
-      const localCart = JSON.parse(localStorage.getItem("guestCart") || "[]");
+      const localCart: CartProduct[] = JSON.parse(localStorage.getItem("guestCart") || "[]");
       localCart.push(newProduct);
       localStorage.setItem("guestCart", JSON.stringify(localCart));
       setCart((prev) => ({
@@ -48,12 +48,8 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
       }));
     } else {
       try {
-        await axios.post("/api/addToCart", {
-          userId,
-          ...newProduct,
-        });
+        await axios.post("/api/addToCart", { userId, ...newProduct });
 
-        // Update state in real-time
         setCart((prev) => ({
           ...prev!,
           products: [...(prev?.products || []), newProduct],
@@ -65,8 +61,70 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
     fetchCart();
   };
 
+  const handleInc = async (productId: string) => {
+    try {
+      if (!userId) {
+        const localCart: CartProduct[] = JSON.parse(localStorage.getItem("guestCart") || "[]");
+        const updatedCart = localCart.map((item) =>
+          item.productId._id === productId ? { ...item, productQnt: item.productQnt + 1 } : item
+        );
+
+        localStorage.setItem("guestCart", JSON.stringify(updatedCart));
+        setCart({ userId: "guest", products: updatedCart });
+      } else {
+        await axios.post("/api/cartIncrement", { productId, userId });
+
+        setCart((prevCart: Cart | null) => {
+          const validPrevCart: Cart = prevCart ?? { userId, products: [] };
+
+          return {
+            ...validPrevCart,
+            products: validPrevCart.products.map((item) =>
+              item.productId._id === productId ? { ...item, productQnt: item.productQnt + 1 } : item
+            ),
+          };
+        });
+      }
+    } catch (error) {
+      console.error("Error incrementing product quantity", error);
+    }
+  };
+
+  const handleDec = async (productId: string) => {
+    try {
+      if (!userId) {
+        const localCart: CartProduct[] = JSON.parse(localStorage.getItem("guestCart") || "[]");
+        const updatedCart = localCart
+          .map((item) =>
+            item.productId._id === productId ? { ...item, productQnt: item.productQnt - 1 } : item
+          )
+          .filter((item) => item.productQnt > 0);
+
+        localStorage.setItem("guestCart", JSON.stringify(updatedCart));
+        setCart({ userId: "guest", products: updatedCart });
+      } else {
+        await axios.post("/api/cartDecrement", { productId, userId });
+
+        setCart((prevCart: Cart | null) => {
+          const validPrevCart: Cart = prevCart ?? { userId, products: [] };
+
+          return {
+            ...validPrevCart,
+            products: validPrevCart.products
+              .map((item) =>
+                item.productId._id === productId ? { ...item, productQnt: item.productQnt - 1 } : item
+              )
+              .filter((item) => item.productQnt > 0),
+          };
+        });
+      }
+    } catch (error) {
+      console.error("Error decrementing product quantity", error);
+    }
+  };
+
   return (
-    <CartContext.Provider value={{ cart, setCart, addToCart }}>
+    <CartContext.Provider value={{ cart, setCart, addToCart, handleInc, handleDec }}>
       {children}
     </CartContext.Provider>
   );

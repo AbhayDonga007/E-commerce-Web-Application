@@ -11,6 +11,7 @@
   "dependencies": {
     "@clerk/nextjs": "^6.11.3",
     "@google-pay/button-react": "^3.1.0",
+    "@heroui/react": "^2.7.4",
     "@mantine/hooks": "^7.10.2",
     "@nextui-org/button": "^2.0.33",
     "@nextui-org/react": "^2.4.1",
@@ -31,7 +32,7 @@
     "cross-spawn": "^7.0.6",
     "crypto": "^1.0.1",
     "express": "^4.21.2",
-    "framer-motion": "^11.2.11",
+    "framer-motion": "^11.18.2",
     "lucide-react": "^0.395.0",
     "micromatch": "^4.0.8",
     "mongoose": "^8.12.1",

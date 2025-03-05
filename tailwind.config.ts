@@ -1,4 +1,4 @@
-import {nextui} from '@nextui-org/react';
+import {heroui} from '@heroui/react';
 import type { Config } from "tailwindcss";
 
 const {
@@ -89,7 +89,7 @@ const config: Config = {
   		'2xl': '1536px'
   	}
   },
-  plugins: [nextui(), require("tailwindcss-animate"),addVariablesForColors],
+  plugins: [heroui(), require("tailwindcss-animate"),addVariablesForColors],
 };
 
 function addVariablesForColors({ addBase, theme }: any) {

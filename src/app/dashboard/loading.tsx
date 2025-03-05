@@ -1,4 +1,5 @@
-import { Card, Navbar, NavbarContent, NavbarItem, Skeleton } from "@nextui-org/react";
+// import { Card, Navbar, NavbarContent, NavbarItem, Skeleton } from "@nextui-org/react";
+import { Card, Navbar, NavbarContent, NavbarItem, Skeleton } from "@heroui/react";
 import React, { FunctionComponent } from "react";
 
 type Props = {};
