@@ -1,15 +1,22 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { BackgroundGradient } from "./ui/background-gradient";
-
 import Link from "next/link";
 import { ShoppingCart } from "lucide-react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { A11y, Navigation, Pagination, Scrollbar } from "swiper/modules";
 import Image from "next/image";
-import { Pacifico } from "next/font/google";
-import { Libre_Baskerville } from "next/font/google";
-import { Button, Card, CardBody, CardFooter, CardHeader } from "@heroui/react";
+import { Pacifico, Libre_Baskerville } from "next/font/google";
+import {
+  Button,
+  Card,
+  CardBody,
+  CardFooter,
+  CardHeader,
+  Skeleton,
+} from "@heroui/react";
+import { Product } from "@/lib/interface";
+
 const pacifico = Pacifico({
   subsets: ["latin"],
   weight: "400",
@@ -24,34 +31,18 @@ const libre = Libre_Baskerville({
 type Props = {
   type: string;
 };
-
-interface Product {
-  _id: string;
-  name: string;
-  des: string;
-  type: Array<string>;
-  size: Array<string>;
-  customerPrize: number;
-  productPrize: number;
-  retailPrize: number;
-  artical_no: string;
-  color: Array<string>;
-  images: Array<string>;
-}
-
 const CategoryProducts = (props: Props) => {
   const name = props.type;
-
-  const [data, setData] = useState([]);
+  const [data, setData] = useState<Product[] | null>(null);
 
   useEffect(() => {
     const getData = async () => {
       const res = await axios.get(`/api/getDataByType?type=${name}`);
-      console.log(setData(res.data));
+      setData(res.data);
     };
-
     getData();
   }, [name]);
+
   return (
     <section className="w-full flex justify-center py-6">
       <div className="container grid gap-8 md:gap-12 px-4 md:px-6">
@@ -67,29 +58,38 @@ const CategoryProducts = (props: Props) => {
         </div>
 
         <div className="grid grid-cols-2 md:grid-cols-3 sm:grid-cols-2 xl:pl-20 xl:pr-20 lg:grid-cols-3 xl:grid-cols-4 gap-2 xl:gap-4">
-          {data.map((item: Product, index) => {
-            const productPrize = item.productPrize ?? 0;
-            const customerPrize = item.customerPrize ?? 0;
-
-            const discount =
-              productPrize !== 0
-                ? ((productPrize - customerPrize) / productPrize) * 100
-                : 0;
-            return (
-              // <BackgroundGradient
-              //   key={index}
-              //   className="rounded-[22px] max-w-sm bg-white"
-              // >
-                <div key={index} className="grid">
-                  <div className="grid relative group">
+          {data === null
+            ? [...Array(8)].map((_, index) => (
+                <Card key={index} className="w-full rounded-[22px] space-y-5 p-4">
+                  <Skeleton className="rounded-[22px] h-[400px]">
+                    <div className="h-24 rounded-lg bg-default-300" />
+                  </Skeleton>
+                  <div className="space-y-3">
+                    <Skeleton className="w-3/5 rounded-lg">
+                      <div className="h-3 w-3/5 rounded-lg bg-default-200" />
+                    </Skeleton>
+                    <Skeleton className="w-4/5 rounded-lg">
+                      <div className="h-3 w-4/5 rounded-lg bg-default-200" />
+                    </Skeleton>
+                    <Skeleton className="w-2/5 rounded-lg">
+                      <div className="h-3 w-2/5 rounded-lg bg-default-300" />
+                    </Skeleton>
+                  </div>
+                </Card>
+              ))
+            : data.map((item) => {
+                const discount =
+                  item.productPrize !== 0
+                    ? ((item.productPrize - item.customerPrize) /
+                        item.productPrize) *
+                      100
+                    : 0;
+                return (
+                  <div key={item._id} className="grid">
                     <Card
-                      isFooterBlurred
-                      // xl:min-h-[390px] min-h-[270px] max-h-[500px]
-                      className="rounded-[22px]  bg-gray-200"
+                      className="rounded-[22px] bg-gray-200"
                       shadow="sm"
-                      key={index}
                       isPressable
-                      onPress={() => console.log("item pressed")}
                     >
                       <CardHeader className="p-2 absolute z-10 flex-col items-start">
                         <Button
@@ -99,42 +99,31 @@ const CategoryProducts = (props: Props) => {
                           <Link
                             className="absolute inset-0 z-10"
                             href={`/product/${item._id}`}
-                          ></Link>
+                          />
                           -{Math.round(discount)}%
                         </Button>
                       </CardHeader>
                       <CardHeader className="p-2 absolute z-10 flex-col items-end">
-                        <Button
-                          isIconOnly
-                          className="rounded-full bg-zinc-300 "
-                        >
+                        <Button isIconOnly className="rounded-full bg-zinc-300">
                           <ShoppingCart />
                           <Link
                             className="absolute inset-0 z-10"
                             href={`/product/${item._id}`}
-                          ></Link>
+                          />
                         </Button>
                       </CardHeader>
                       <CardBody className="p-0">
                         <Swiper
                           className="w-full bg-black/30 bg-blur"
                           modules={[Navigation, Pagination, Scrollbar, A11y]}
-                          // spaceBetween={50}
                           slidesPerView={1}
-                          // navigation
-                          pagination={{
-                            clickable: true,
-                            dynamicBullets: true,
-                          }}
-                          // scrollbar={{ draggable: true }}
-                          // onSwiper={(swiper) => console.log(swiper)}
-                          // onSlideChange={() => console.log('slide change')}
+                          pagination={{ clickable: true, dynamicBullets: true }}
                         >
                           {item.images.map((image, index) => (
                             <SwiperSlide key={index}>
                               <Image
-                                alt="Leather Jacket"
-                                className="object-cover w-full aspect-[3/4] group-hover:opacity-80 transition-opacity gap-y-3"
+                                alt={item.name}
+                                className="object-cover w-full aspect-[3/4] group-hover:opacity-80 transition-opacity"
                                 height={350}
                                 src={image}
                                 width={400}
@@ -142,37 +131,31 @@ const CategoryProducts = (props: Props) => {
                               <Link
                                 className="absolute inset-0 z-10"
                                 href={`/product/${item._id}`}
-                              ></Link>
+                              />
                             </SwiperSlide>
                           ))}
                         </Swiper>
                       </CardBody>
-                      <CardFooter className="flex flex-col relative bg-white/30 bottom-0 border-t-1 border-zinc-100/50 z-10">
-                        <div>
-                          <p className="text-black w-auto text-[14px] line-clamp-1 text-start xl:text-center font-semibold">
-                            {item.name}
-                          </p>
-                        </div>
-                        <div>
-                          <p className="w-auto text-[12px] text-gray-500 text-center font-semibold">
-                            {item.type}
-                          </p>
-                        </div>
+                      <CardFooter className="flex flex-col bg-white/30 border-t-1 border-zinc-100/50 z-10">
+                        <p className="text-black text-[14px] line-clamp-1 text-start font-semibold">
+                          {item.name}
+                        </p>
+                        <p className="text-[12px] text-gray-500 text-center font-semibold">
+                          {item.type}
+                        </p>
                         <div className="flex flex-row gap-2">
-                          <p className="text-red-700 w-auto text-[14px] truncate text-start max-h-[22px] font-semibold">
+                          <p className="text-red-700 text-[14px] font-semibold">
                             ₹ {item.customerPrize}
                           </p>
-                          <p className="text-red-700 w-auto text-[14px] truncate text-start max-h-[22px] font-semibold line-through">
+                          <p className="text-red-700 text-[14px] font-semibold line-through">
                             ₹ {item.productPrize}
                           </p>
                         </div>
                       </CardFooter>
                     </Card>
                   </div>
-                </div>
-              // </BackgroundGradient>
-            );
-          })}
+                );
+              })}
         </div>
       </div>
     </section>

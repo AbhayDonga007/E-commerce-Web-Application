@@ -2,7 +2,6 @@
 import { CardProduct } from "@/components/Card";
 import { Footer } from "@/components/Footer";
 import Nav from "@/components/Nav";
-import { Newsletter } from "@/components/Newsletter";
 import QualityProduct from "@/components/QualityProduct";
 import { useSession } from "@clerk/nextjs";
 import React from "react";
@@ -17,10 +16,8 @@ const Products = (props: Props) => {
       }
   return (
     <div>
-      <Nav />
       <CardProduct />
       <QualityProduct />
-      <Footer />
     </div>
   );
 };

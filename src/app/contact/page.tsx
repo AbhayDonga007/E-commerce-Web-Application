@@ -7,7 +7,6 @@ const playfair = Playfair_Display({ subsets: ["latin"] })
 export default function Contact() {
   return (
     <>
-    <Nav />
     <div className="max-w-4xl mb-10 mx-auto">
       <h1 className={`${playfair.className} text-4xl font-bold mb-8 text-center text-gold`}>Contact Us</h1>
       <p className="mb-8 text-lg text-center">
@@ -91,7 +90,6 @@ export default function Contact() {
         </div>
       </div>
     </div>
-    <Footer />
     </>
   )
 }

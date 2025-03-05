@@ -216,7 +216,6 @@ const Page = (props: Props) => {
 
   return (
     <>
-      <Nav />
       <div
         key="1"
         className="flex flex-col items-center justify-center min-h-screen py-12 sm:px-6 lg:px-8 bg-gray-300"

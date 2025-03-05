@@ -7,6 +7,8 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import Script from "next/script";
 import { Analytics } from "@vercel/analytics/react";
 import { CartProvider } from "@/context/CartContext";
+import Nav from "@/components/Nav";
+import { Footer } from "@/components/Footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,12 +24,16 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <ClerkProvider>
-        <CartProvider>
-          {children}
-          <Analytics />
-          <SpeedInsights />
-          <Toaster />
-          <Script src="https://checkout.razorpay.com/v1/checkout.js" />
+          <CartProvider>
+            <div>
+              <Nav />
+              {children}
+              <Footer />
+            </div>
+            <Analytics />
+            <SpeedInsights />
+            <Toaster />
+            <Script src="https://checkout.razorpay.com/v1/checkout.js" />
           </CartProvider>
         </ClerkProvider>
       </body>

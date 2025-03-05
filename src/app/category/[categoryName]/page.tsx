@@ -28,7 +28,6 @@ const Page = ({ params }: PageProps) => {
 
   return (
     <>
-      <Nav />
       <CategoryProducts type={name} />
     </>
   );

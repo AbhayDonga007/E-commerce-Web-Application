@@ -54,7 +54,6 @@ const DashBoard = (props: Props) => {
           ></i>
         </Link>
       </Button> */}
-      <Nav />
       <Banner />
       <Category />
       <ShowRoom />

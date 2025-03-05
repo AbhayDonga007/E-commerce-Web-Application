@@ -3,36 +3,18 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { Button, ButtonGroup } from "@nextui-org/button";
 import { useCounter } from "@mantine/hooks";
-import { useSession } from "@clerk/nextjs";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { A11y, Navigation, Pagination, Scrollbar } from "swiper/modules";
 import Image from "next/image";
-import { Select, SelectItem } from "@nextui-org/react";
+import { Select, SelectItem, Skeleton } from "@nextui-org/react";
 import { MinusIcon, PlusIcon } from "lucide-react";
 import toast from "react-hot-toast";
-import Nav from "./Nav";
-import { useRouter } from "next/navigation";
-import { Footer } from "./Footer";
 import { useCart } from "@/context/CartContext";
-import { CartProduct } from "@/lib/interface";
+import { CartProduct, Product } from "@/lib/interface";
 
 type Props = {
   id: string;
 };
-
-interface Product {
-  _id: string;
-  name: string;
-  des: string;
-  type: Array<string>;
-  size: Array<string>;
-  customerPrize: number;
-  productPrize: number;
-  retailPrize: number;
-  artical_no: string;
-  color: Array<string>;
-  images: Array<string>;
-}
 
 export function ProductPage(props: Props) {
   const { id } = props;
@@ -40,14 +22,19 @@ export function ProductPage(props: Props) {
   const [productSize, setSize] = useState("");
   const [productColor, setColor] = useState("");
   const { addToCart } = useCart();
-  const session = useSession();
-  const userId = session.session?.user.id;
+  const [product, setProduct] = useState<Product | null>(null);
+  const [loading, setLoading] = useState(true);
 
-  const [product, setProduct] = useState<Product>();
   useEffect(() => {
     const getData = async () => {
-      const res = await axios.get(`/api/getDataById?id=${id}`);
-      setProduct(res.data);
+      try {
+        const res = await axios.get(`/api/getDataById?id=${id}`);
+        setProduct(res.data);
+      } catch (error) {
+        console.error("Error fetching product:", error);
+      } finally {
+        setLoading(false);
+      }
     };
 
     getData();
@@ -55,7 +42,6 @@ export function ProductPage(props: Props) {
 
   const productPrize = product?.productPrize ?? 0;
   const customerPrize = product?.customerPrize ?? 0;
-
   const discount =
     productPrize !== 0
       ? ((productPrize - customerPrize) / productPrize) * 100
@@ -64,7 +50,7 @@ export function ProductPage(props: Props) {
   const handleCart = async () => {
     if (!product) return;
 
-    const cartItem:CartProduct = {
+    const cartItem: CartProduct = {
       productId: product,
       productQnt: count,
       productSize,
@@ -77,115 +63,110 @@ export function ProductPage(props: Props) {
 
   return (
     <div className="bg-gray-100">
-      <Nav />
-      <div className="grid md:grid-cols-2 items-start max-w-6xl mx-auto">
-        <Swiper
-          className="w-[376px] sm:max-w-screen rounded-lg bg-black/10 bg-blur"
-          modules={[Navigation, Pagination, Scrollbar, A11y]}
-          // spaceBetween={50}
-          slidesPerView={1}
-          // navigation
-          pagination={{ clickable: true, dynamicBullets: true }}
-          // scrollbar={{ draggable: true }}
-          onSwiper={(swiper) => console.log(swiper)}
-          onSlideChange={() => console.log("slide change")}
-        >
-          {product?.images.map((image) => (
-            <SwiperSlide key={image}>
-              <Image
-                className="w-full h-auto object-contain"
-                src={image}
-                width={300}
-                height={400}
-                alt="Picture of the author"
-              />
-            </SwiperSlide>
-          ))}
-        </Swiper>
-
-        <div className="grid gap-2 m-3">
-          <div>
-            <h1 className="text-2xl font-bold pb-3">{product?.name}</h1>
-            <p className="text-gray-500 font-semibold dark:text-gray-400 text-md">
-              {product?.des}
-            </p>
-          </div>
-          <div className="grid gap-2 pb-3">
-            <p className="text-black font-bold text-md">
-              Marketed By Aavkar Fashion 
-            </p>
-            <p className="text-gray-500 font-medium text-sm">
-              D2-201, Opera Palm, Pasodara Patiya, Near Kamrej, Surat - 394190
-            </p>
-            <p className="text-black font-bold text-md">
-              Manufacturing By Eroe Designer
-            </p>
-            <p className="text-gray-500 font-medium text-sm">
-              Contact us: +91 7818070999
-            </p>
-            <p className="text-gray-500 font-medium text-sm">
-              Email: abhaydonga007@gmail.com
-            </p>
-          </div>
-          <div className="grid">
-            <div className="flex items-center gap-2 pb-3">
-              <div className="text-4xl font-bold">
-                ₹ {product?.customerPrize}
-              </div>
-              <p className="bg-red-600 text-white px-2 py-1 rounded-full text-sm">
-                -{Math.round(discount)} %
-              </p>
+      <div className="grid md:grid-cols-2 gap-6 items-start max-w-6xl mx-auto p-5">
+        {loading ? (
+          // Skeleton Loader with equal height columns
+          <>
+            <div className="w-full flex justify-center items-center">
+              <Skeleton className="w-[376px] h-[500px] rounded-lg" />
             </div>
-            <div>
-              <p className="text-gray-500 font-medium  text-sm">
-                Maximun Retail Prize (Inclusive of All Taxes)
+
+            <div className="w-full flex flex-col gap-4">
+              <Skeleton className="h-8 w-3/4" />
+              <Skeleton className="h-6 w-full" />
+              <Skeleton className="h-6 w-1/2" />
+              <Skeleton className="h-10 w-32" />
+              <Skeleton className="h-12 w-full" />
+              <Skeleton className="h-12 w-full" />
+              <Skeleton className="h-12 w-32" />
+              <Skeleton className="h-12 w-full" />
+            </div>
+          </>
+        ) : (
+          <>
+            {/* Image Slider */}
+            <Swiper
+              className="w-[376px] sm:max-w-screen rounded-lg bg-black/10 bg-blur"
+              modules={[Navigation, Pagination, Scrollbar, A11y]}
+              slidesPerView={1}
+              pagination={{ clickable: true, dynamicBullets: true }}
+            >
+              {product?.images.map((image) => (
+                <SwiperSlide key={image}>
+                  <Image
+                    className="w-full h-auto object-contain"
+                    src={image}
+                    width={300}
+                    height={400}
+                    alt="Product Image"
+                  />
+                </SwiperSlide>
+              ))}
+            </Swiper>
+
+            {/* Product Details */}
+            <div className="grid gap-2 m-3">
+              <h1 className="text-2xl font-bold pb-3">{product?.name}</h1>
+              <p className="text-gray-500 font-semibold dark:text-gray-400 text-md">
+                {product?.des}
+              </p>
+
+              <div className="grid gap-2 pb-3">
+                <p className="text-black font-bold text-md">
+                  Marketed By Aavkar Fashion
+                </p>
+                <p className="text-gray-500 font-medium text-sm">
+                  D2-201, Opera Palm, Pasodara Patiya, Near Kamrej, Surat - 394190
+                </p>
+                <p className="text-black font-bold text-md">
+                  Manufacturing By Eroe Designer
+                </p>
+                <p className="text-gray-500 font-medium text-sm">
+                  Contact us: +91 7818070999
+                </p>
+                <p className="text-gray-500 font-medium text-sm">
+                  Email: abhaydonga007@gmail.com
+                </p>
+              </div>
+
+              <div className="flex items-center gap-2 pb-3">
+                <div className="text-4xl font-bold">₹ {customerPrize}</div>
+                <p className="bg-red-600 text-white px-2 py-1 rounded-full text-sm">
+                  -{Math.round(discount)} %
+                </p>
+              </div>
+
+              <p className="text-gray-500 font-medium text-sm">
+                Maximum Retail Price (Inclusive of All Taxes)
               </p>
               <div className="text-2xl font-bold text-gray-500 line-through">
-                ₹ {product?.productPrize}
+                ₹ {productPrize}
               </div>
-            </div>
-            <div className="grid gap-2 pt-3">
-              <div className="w-full flex flex-col gap-4">
-                <div
-                  key="md"
-                  className="flex w-full flex-wrap flex-nowrap mb-6 mb-0 gap-4"
-                >
-                  <Select
-                    label="Select Size"
-                    className="max-w-xs"
-                    onChange={(e) => setSize(e.target.value)}
-                  >
-                    {product?.size[0]?.split(",").map((size) => (
-                      <SelectItem key={size} value={size}>
-                        {size}
-                      </SelectItem>
-                    )) || []}
-                  </Select>
-                </div>
-              </div>
-            </div>
-            <div className="grid gap-2">
-              <div className="w-full flex flex-col gap-4">
-                <div
-                  key="md"
-                  className="flex w-full flex-wrap flex-nowrap mb-6 mb-0 gap-4"
-                >
-                  <Select
-                    label="Select Color"
-                    className="max-w-xs"
-                    onChange={(e) => setColor(e.target.value)}
-                  >
-                    {product?.color[0]?.split(",").map((size) => (
-                      <SelectItem key={size} value={size}>
-                        {size}
-                      </SelectItem>
-                    )) || []}
-                  </Select>
-                </div>
-              </div>
-            </div>
-            <div className="grid gap-2 pb-3">
-              <p className="text-gray-500 font-medium text-sm">Quantity</p>
+
+              <Select
+                label="Select Size"
+                className="max-w-xs"
+                onChange={(e) => setSize(e.target.value)}
+              >
+                {product?.size?.[0]?.split(",").map((size) => (
+                  <SelectItem key={size} value={size}>
+                    {size}
+                  </SelectItem>
+                )) || []}
+              </Select>
+
+              <Select
+                label="Select Color"
+                className="max-w-xs"
+                onChange={(e) => setColor(e.target.value)}
+              >
+                {product?.color?.[0]?.split(",").map((color) => (
+                  <SelectItem key={color} value={color}>
+                    {color}
+                  </SelectItem>
+                )) || []}
+              </Select>
+
               <div className="flex items-center gap-2">
                 <ButtonGroup className="" size="lg">
                   <Button
@@ -198,7 +179,6 @@ export function ProductPage(props: Props) {
                     <PlusIcon />
                   </Button>
                   <div className="w-10 text-[32px] text-black text-center font-semibold bg-amber-300">
-                    {" "}
                     {Number(count)}
                   </div>
                   <Button
@@ -212,19 +192,18 @@ export function ProductPage(props: Props) {
                   </Button>
                 </ButtonGroup>
               </div>
-            </div>
 
-            <Button
-              onClick={handleCart}
-              className="w-auto rounded-full font-bold bg-amber-400"
-              size="lg"
-            >
-              Add to Cart
-            </Button>
-          </div>
-        </div>
+              <Button
+                onClick={handleCart}
+                className="w-auto rounded-full font-bold bg-amber-400"
+                size="lg"
+              >
+                Add to Cart
+              </Button>
+            </div>
+          </>
+        )}
       </div>
-      <Footer />
     </div>
   );
 }

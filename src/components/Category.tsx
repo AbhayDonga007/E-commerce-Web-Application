@@ -53,7 +53,7 @@ const libre = Libre_Baskerville({
   style: "normal",
 });
 
-export function   Category() {
+export function Category() {
   return (
     <section className="w-full flex justify-center py-6">
       <div className="container grid gap-2 md:gap-12 px-4 md:px-6">

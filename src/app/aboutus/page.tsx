@@ -6,7 +6,6 @@ import im from '@/images/Piyush Donga-images-0.jpg'
 export default function About() {
   return (
     <>
-    <Nav />
     <div className="max-w-4xl mx-auto pb-10">
       <h1 className="text-4xl font-bold mb-8 text-center text-gold">About Us</h1>
       <div className="flex items-center m-8">
@@ -45,7 +44,6 @@ export default function About() {
         that are as unique and memorable as the occasions themselves.
       </p>
     </div>
-    <Footer />
     </>
   )
 }

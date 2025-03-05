@@ -7,7 +7,6 @@ const playfair = Playfair_Display({ subsets: ["latin"] })
 export default function Returns() {
   return (
     <>
-    <Nav />
     <div className="max-w-4xl mb-10 mx-auto">
       <h1 className={`${playfair.className} text-4xl font-bold mb-8 text-center text-gold`}>Return Policy</h1>
       <div className="bg-white p-8 rounded-lg shadow-md">
@@ -51,7 +50,6 @@ export default function Returns() {
         </p>
       </div>
     </div>
-    <Footer />
     </>
   )
 }
