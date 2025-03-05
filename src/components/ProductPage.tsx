@@ -13,6 +13,8 @@ import toast from "react-hot-toast";
 import Nav from "./Nav";
 import { useRouter } from "next/navigation";
 import { Footer } from "./Footer";
+import { useCart } from "@/context/CartContext";
+import { CartProduct } from "@/lib/interface";
 
 type Props = {
   id: string;
@@ -37,6 +39,7 @@ export function ProductPage(props: Props) {
   const [count, handlers] = useCounter(1, { min: 1, max: 30 });
   const [productSize, setSize] = useState("");
   const [productColor, setColor] = useState("");
+  const { addToCart } = useCart();
   const session = useSession();
   const userId = session.session?.user.id;
 
@@ -59,46 +62,17 @@ export function ProductPage(props: Props) {
       : 0;
 
   const handleCart = async () => {
-    console.log("userID", userId);
+    if (!product) return;
 
-    const cartItem = {
-      productId: id,
+    const cartItem:CartProduct = {
+      productId: product,
       productQnt: count,
       productSize,
       productColor,
     };
 
-    if (!userId) {
-      // If user is not logged in, store data in localStorage
-      const localCart = JSON.parse(
-        localStorage.getItem("guestCart") || "[]"
-      ) as Array<any>;
-      localCart.push(cartItem);
-      localStorage.setItem("guestCart", JSON.stringify(localCart));
-      toast.success("Item added to cart (Guest Mode)");
-
-      return;
-    }
-
-    // If user is logged in, proceed with API call
-    try {
-      const response = await fetch("/api/addToCart", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ userId, ...cartItem }),
-      });
-
-      if (response.status === 201) {
-        toast.success("Item Added to your cart");
-      } else {
-        toast.error("Something went wrong");
-      }
-    } catch (error) {
-      console.error("Error adding to cart:", error);
-      toast.error("Something went wrong");
-    }
+    await addToCart(cartItem);
+    toast.success("Item added to cart!");
   };
 
   return (

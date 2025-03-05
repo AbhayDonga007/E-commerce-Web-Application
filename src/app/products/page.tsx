@@ -9,8 +9,7 @@ import React from "react";
 
 type Props = {};
 
-const Products =async (props: Props) => {
-  // await new Promise((resolve) => setTimeout(resolve,3000));
+const Products = (props: Props) => {
   const session = useSession();
     const userId = session.session?.user.id;
       if(userId){
