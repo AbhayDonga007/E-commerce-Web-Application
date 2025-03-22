@@ -35,6 +35,7 @@ export async function GET(req: Request) {
 
     // Fetch orders and populate product details
     const orders = await Order.find(query).populate("products.productId");
+    
 
     if (!orders.length) {
       return NextResponse.json({ error: "No orders found." }, { status: 404 });

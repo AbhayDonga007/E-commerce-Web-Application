@@ -9,6 +9,9 @@ const OrderSchema = new mongoose.Schema(
     customerEmail: { type: String, required: true },
     customerPhone: { type: String, required: true },
     shippingAddress: { type: String, required: true },
+    state: { type: String, required: true },
+    country: { type: String, required: true },
+    pincode: { type: String, required: true },
     items: { type: Number, required: true },
     orderPrice: { type: Number, required: true },
     status: {

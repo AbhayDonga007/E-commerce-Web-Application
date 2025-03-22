@@ -42,9 +42,9 @@ const Page = (props: Props) => {
 
   const session = useSession();
   const userId = session.session?.user.id;
-    if(userId){
-      localStorage.clear();
-    }
+  if (userId) {
+    localStorage.clear();
+  }
   const [customerdetail, setCustomerDetail] = useState({
     id: userId || "guest",
     name: "",
@@ -54,45 +54,47 @@ const Page = (props: Props) => {
   });
 
   useEffect(() => {
-    // const getCartData = async () => {
-    //   const res = await axios.get(`/api/getCartData?userId=${userId}`);
-    //   console.log(res.data);
-
-    //   setList(res.data);
-    // };
     const getCartData = async () => {
       if (!userId) {
-        // Get guest cart from local storage
         const localCart = JSON.parse(localStorage.getItem("guestCart") || "[]");
-        console.log(localCart);
 
         if (localCart.length === 0) {
-          setList({ userId: "guest", products: [] }); // Set empty cart
+          setList({ userId: "guest", products: [] });
           return;
         }
 
-        // Fetch full product details for guest cart items
-        const productIds = localCart.map((item: CartProduct) => item.productId);
-        console.log(productIds);
+        const productIds = localCart.map((item: CartProduct) =>
+          String(item.productId?._id || item.productId)
+        );
+
+        console.log("productIds", productIds);
 
         try {
           const res = await axios.post("/api/getProductsByIds", { productIds });
           const fullProducts: Product[] = res.data;
-          console.log(fullProducts);
+          console.log("fullProducts", fullProducts);
 
-          // Map local storage cart to include full product details
           const formattedCart: Cart = {
             userId: "guest",
-            products: localCart.map((item: CartProduct) => ({
-              ...item,
-              productId:
-                fullProducts.find(
-                  (p) => String(p._id) === String(item.productId)
-                ) || ({} as Product),
-            })),
-          };
-          console.log(formattedCart);
+            products: localCart.map((item: CartProduct) => {
+              const product = fullProducts.find(
+                (p) =>
+                  String(p._id) ===
+                  String(item.productId?._id || item.productId)
+              );
 
+              if (!product) {
+                console.warn("Product not found for ID:", item.productId);
+              }
+
+              return {
+                ...item,
+                productId: product || null,
+              };
+            }),
+          };
+
+          console.log("formattedCart", formattedCart);
           setList(formattedCart);
         } catch (error) {
           console.error("Error fetching guest cart product details:", error);
@@ -102,21 +104,24 @@ const Page = (props: Props) => {
 
       try {
         const res = await axios.get(`/api/getCartData?userId=${userId}`);
-        console.log(res);
+        console.log("Fetched user cart data:", res.data);
         setList(res.data);
       } catch (error) {
         console.error("Error fetching cart data:", error);
       }
     };
-
     getCartData();
   }, [userId]);
 
   //  Razorpay
-    const MakePayment = async () => {
+  const MakePayment = async () => {
     console.log(list?.products);
 
-    if (customerdetail.name === "" || customerdetail.email === "" || customerdetail.phone === 0) {
+    if (
+      customerdetail.name === "" ||
+      customerdetail.email === "" ||
+      customerdetail.phone === 0
+    ) {
       toast.error("Please fill all the details");
       return;
     }
@@ -191,7 +196,7 @@ const Page = (props: Props) => {
       toast.error("Payment Failed, Redirecting...");
       window.location.href = "/dashboard";
     });
-};
+  };
 
   // async function MakePayment(): Promise<void> {
   //   if (
@@ -317,7 +322,7 @@ const Page = (props: Props) => {
                   className="w-full font-bold text-white bg-red-600 hover:text-red-500 hover:bg-red-200"
                 >
                   Make Payment
-                </Button> 
+                </Button>
                 {/* <GooglePayButton
                   environment="TEST"
                   paymentRequest={{

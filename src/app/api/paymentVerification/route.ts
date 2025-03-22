@@ -60,12 +60,14 @@ export async function POST(req: NextRequest) {
     const newOrder = await Order.create({
       orderId: razorpay_order_id,
       paymentId: razorpay_payment_id,
-      // amount: cart.totalAmount,
       customerId: customer.id,
       customerName: customer.name,
       customerEmail: customer.email,
       customerPhone: customer.phone,
       shippingAddress: customer.address,
+      country: customer.country,
+      state: customer.state,
+      pincode: customer.pincode,
       items: cart.products.length,
       orderPrice: cart.totalAmount,
       products: cart.products.map((product: CartProduct) => ({

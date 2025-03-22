@@ -1,11 +1,6 @@
 "use client";
 import Link from "next/link";
-import {
-  SignedIn,
-  SignedOut,
-  SignInButton,
-  UserButton,
-} from "@clerk/nextjs";
+import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/nextjs";
 import Logo from "./Logo";
 import { MenuIcon, ShoppingCart } from "lucide-react";
 import { useEffect, useState } from "react";
@@ -15,7 +10,18 @@ import Search from "./Search";
 import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet";
 import Cart from "./Cart";
 import CartComponent from "./Cart";
-import { Button, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger } from "@heroui/react";
+import {
+  Badge,
+  Button,
+  Dropdown,
+  DropdownItem,
+  DropdownMenu,
+  DropdownTrigger,
+} from "@heroui/react";
+import Cart2 from "./Cart2";
+import { useCart } from "@/context/CartContext";
+import OrderModal from "./Cart2";
+// import { Button } from "./ui/button";
 
 const items = [
   { key: "Designer Kurti", label: "Designer Kurti" },
@@ -30,6 +36,8 @@ const items = [
 ];
 
 export default function Nav() {
+  const [open, setOpen] = useState(false);
+  const { cart, handleInc, handleDec } = useCart();
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container pl-[4%] pr-[4%] flex h-14 max-w-screen-2xl items-center">
@@ -132,9 +140,8 @@ export default function Nav() {
           </div>
           <div className="flex w-full items-center gap-4 md:ml-auto md:gap-2 lg:gap-4">
             <div className="cart-icon">
-              <CartComponent />
-
-              {/* {Boolean(5) && <span>{5}</span>}  */}
+              {/* <CartComponent /> */}
+              <OrderModal />
             </div>
             <div className="w-auto h-auto">
               <SignedOut>

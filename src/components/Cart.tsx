@@ -18,15 +18,10 @@ import {
 } from "@nextui-org/react";
 import Link from "next/link";
 import { CardTitle } from "./ui/card";
-import axios from "axios";
-import { useSession } from "@clerk/nextjs";
-import { Cart, CartProduct } from "@/lib/interface";
 
 const CartComponent = () => {
   const { cart, handleInc, handleDec } = useCart();
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
-  const session = useSession();
-  const userId = session.session?.user.id;
   
   return (
     <>

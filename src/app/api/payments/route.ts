@@ -1,50 +1,28 @@
-import Razorpay from 'razorpay'
+import { instance } from "@/lib/server";
 import { NextRequest, NextResponse } from "next/server";
-import { instance } from '@/lib/server';
-import { CartProduct } from '@/lib/interface';
 
-export async function POST(req:NextRequest) {
+export async function POST(req: NextRequest) {
     try {
-        const cart = await req.json();
-        console.log("Cart:", cart);
-
-        // Ensure cart.products is an array before reducing
-        if (!Array.isArray(cart.products)) {
-            return NextResponse.json({ message: "Invalid cart data" }, { status: 400 });
-        }
-
-        // Calculate total amount correctly
-        const totalAmount = cart.products.reduce((total: number, cartProduct: CartProduct) => {
-            if (!cartProduct.productId || typeof cartProduct.productId.customerPrize !== "number") {
-                console.warn("Invalid product data:", cartProduct);
-                return total; // Skip invalid products
-            }
-            
-            const productPrice = cartProduct.productId.customerPrize;
-            const quantity = cartProduct.productQnt || 1; // Default to 1 if missing
-
-            console.log(`Product Price: ${productPrice}, Quantity: ${quantity}`);
-
-            return total + (productPrice * quantity);
-        }, 0);
-
+        const { totalAmount } = await req.json(); // Extract totalAmount from object
         console.log("Total Amount:", totalAmount);
         
-        
-        const options = {
-            amount: totalAmount * 100,
-            currency: "INR"
-          };
-          
-        const order = await instance.orders.create(options)
+        if (!totalAmount || typeof totalAmount !== "number") {
+            return NextResponse.json({ message: "Invalid amount" }, { status: 400 });
+        }
 
-        console.log({cart,order});
-        return NextResponse.json({cart,order});
+        const options = {
+            amount: totalAmount * 100, // Convert to paise
+            currency: "INR",
+        };
+          
+        const order = await instance.orders.create(options);
+        return NextResponse.json(order);
     } catch (error) {
-        console.error(error);  
+        console.error("Razorpay Error:", error);
         return NextResponse.json({ message: "Payment Failed" }, { status: 500 });
     }
 }
+
 
 
 // import type { NextApiRequest, NextApiResponse } from "next";
