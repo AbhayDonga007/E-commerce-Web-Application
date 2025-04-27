@@ -102,6 +102,10 @@ const CategoryProducts = (props: Props) => {
                             className="bg-red-600 text-white font-bold px-2 py-1 rounded-full text-sm"
                           >
                             -{Math.round(discount)}%
+                            <Link
+                                className="absolute inset-0 z-10"
+                                href={`/product/${item._id}`}
+                              ></Link>
                           </Button>
                         {/* </Link> */}
                       </CardHeader>
@@ -109,10 +113,10 @@ const CategoryProducts = (props: Props) => {
                       <CardHeader className="p-2 absolute z-10 flex-col items-end">
                         <Button isIconOnly className="rounded-full bg-zinc-300">
                           <ShoppingCart />
-                          {/* <Link
+                          <Link
                             className="absolute inset-0 z-10"
                             href={`/product/${item._id}`}
-                          /> */}
+                          />
                         </Button>
                       </CardHeader>
                       <CardBody className="p-0">
@@ -131,10 +135,10 @@ const CategoryProducts = (props: Props) => {
                                 src={image}
                                 width={400}
                               />
-                              {/* <Link
+                              <Link
                                 className="absolute inset-0 z-10"
                                 href={`/product/${item._id}`}
-                              /> */}
+                              />
                             </SwiperSlide>
                           ))}
                         </Swiper>

@@ -16,6 +16,7 @@ import {
   Skeleton,
 } from "@heroui/react";
 import { Product } from "@/lib/interface";
+import { useRouter } from 'next/navigation';
 
 const pacifico = Pacifico({
   subsets: ["latin"],
@@ -31,6 +32,7 @@ const libre = Libre_Baskerville({
 
 export function CardProduct() {
   const [data, setData] = useState<Product[] | null>(null);
+  const router = useRouter();
 
   useEffect(() => {
     const getData = async () => {
@@ -103,35 +105,32 @@ export function CardProduct() {
                           onPress={() => console.log("Item pressed")}
                           >
                           <Link href={`/product/${item._id}`}>
-                          {/* Discount Label */}
                           <CardHeader className="p-2 absolute z-10 flex-col items-start">
                             <Button
                               isIconOnly
                               className="bg-red-600 text-white font-bold px-2 py-1 rounded-full text-sm"
                             >
-                              {/* <Link
+                              <Link
                                 className="absolute inset-0 z-10"
                                 href={`/product/${item._id}`}
-                              ></Link> */}
+                              ></Link>
                               -{Math.round(discount)}%
                             </Button>
                           </CardHeader>
 
-                          {/* Cart Button */}
                           <CardHeader className="p-2 absolute z-10 flex-col items-end">
                             <Button
                               isIconOnly
                               className="rounded-full bg-zinc-300"
                             >
                               <ShoppingCart />
-                              {/* <Link
+                              <Link
                                 className="absolute inset-0 z-10"
                                 href={`/product/${item._id}`}
-                              ></Link> */}
+                              ></Link>
                             </Button>
                           </CardHeader>
 
-                          {/* Product Image Slider */}
                           <CardBody className="p-0">
                             <Swiper
                               className="w-full bg-black/30 bg-blur"
@@ -146,6 +145,7 @@ export function CardProduct() {
                                 clickable: true,
                                 dynamicBullets: true,
                               }}
+                              onClick={() => router.push(`/product/${item._id}`)}
                             >
                               {item.images.map((image, imgIndex) => (
                                 <SwiperSlide key={imgIndex}>
@@ -156,16 +156,15 @@ export function CardProduct() {
                                     src={image}
                                     width={400}
                                   />
-                                  {/* <Link
+                                  <Link
                                     className="absolute inset-0 z-10"
                                     href={`/product/${item._id}`}
-                                  ></Link> */}
+                                  ></Link>
                                 </SwiperSlide>
                               ))}
                             </Swiper>
                           </CardBody>
 
-                          {/* Product Details */}
                           <CardFooter className="flex flex-col relative bg-white/30 bottom-0 border-t-1 border-zinc-100/50 z-10">
                             <div>
                               <p className="text-black w-auto text-[14px] line-clamp-1 text-start xl:text-center font-semibold">

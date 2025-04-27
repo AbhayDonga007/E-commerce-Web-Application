@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(req: NextRequest) {
     try {
-        const { totalAmount } = await req.json(); // Extract totalAmount from object
+        const { totalAmount } = await req.json(); 
         console.log("Total Amount:", totalAmount);
         
         if (!totalAmount || typeof totalAmount !== "number") {
