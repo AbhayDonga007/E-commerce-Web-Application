@@ -80,7 +80,7 @@ const DashBoard = (props: Props) => {
         </SwiperSlide>
       </Swiper>
 
-      <CategoryProducts type="Kurti" />
+      <CategoryProducts type="Designer Kurti" />
       <Swiper
         className="w-full bg-black/30 bg-blur"
         modules={[Navigation, Pagination, Scrollbar, A11y]}
@@ -101,7 +101,7 @@ const DashBoard = (props: Props) => {
         </SwiperSlide>
       </Swiper>
 
-      <CategoryProducts type="Pant Pair" />
+      <CategoryProducts type="Elegant Pant Pair" />
 
       <Swiper
         className="w-full bg-black/30 bg-blur"
@@ -123,7 +123,7 @@ const DashBoard = (props: Props) => {
         </SwiperSlide>
       </Swiper>
 
-      <CategoryProducts type="Gown" />
+      <CategoryProducts type="Royal Gown Collection" />
 
       <Swiper
         className="w-full bg-black/30 bg-blur"
@@ -145,7 +145,7 @@ const DashBoard = (props: Props) => {
         </SwiperSlide>
       </Swiper>
 
-      <CategoryProducts type="Plaza Pair" />
+      <CategoryProducts type="Chic Plaza Pair" />
 
       <Swiper
         className="w-full bg-black/30 bg-blur"
@@ -167,7 +167,7 @@ const DashBoard = (props: Props) => {
         </SwiperSlide>
       </Swiper>
 
-      <CategoryProducts type="Nayra Pair" />
+      <CategoryProducts type="Trendy Indo Western Wear" />
       <CustomerExp />
       <Newsletter />
       <QualityProduct />

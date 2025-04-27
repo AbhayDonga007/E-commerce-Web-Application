@@ -60,7 +60,10 @@ const CategoryProducts = (props: Props) => {
         <div className="grid grid-cols-2 md:grid-cols-3 sm:grid-cols-2 xl:pl-20 xl:pr-20 lg:grid-cols-3 xl:grid-cols-4 gap-2 xl:gap-4">
           {data === null
             ? [...Array(8)].map((_, index) => (
-                <Card key={index} className="w-full rounded-[22px] space-y-5 p-4">
+                <Card
+                  key={index}
+                  className="w-full rounded-[22px] space-y-5 p-4"
+                >
                   <Skeleton className="rounded-[22px] h-[400px]">
                     <div className="h-24 rounded-lg bg-default-300" />
                   </Skeleton>
@@ -92,25 +95,28 @@ const CategoryProducts = (props: Props) => {
                       isPressable
                     >
                       <CardHeader className="p-2 absolute z-10 flex-col items-start">
-                        <Button
-                          isIconOnly
-                          className="bg-red-600 text-white font-bold px-2 py-1 rounded-full text-sm"
-                        >
-                          <Link
-                            className="absolute inset-0 z-10"
-                            href={`/product/${item._id}`}
-                          />
-                          -{Math.round(discount)}%
-                        </Button>
+                        <Link href={`/product/${item._id}`} className="z-10">
+                          <Button
+                            isIconOnly
+                            className="bg-red-600 text-white font-bold px-2 py-1 rounded-full text-sm"
+                          >
+                            -{Math.round(discount)}%
+                          </Button>
+                        </Link>
                       </CardHeader>
+
                       <CardHeader className="p-2 absolute z-10 flex-col items-end">
-                        <Button isIconOnly className="rounded-full bg-zinc-300">
-                          <ShoppingCart />
-                          <Link
-                            className="absolute inset-0 z-10"
-                            href={`/product/${item._id}`}
-                          />
-                        </Button>
+                        <Link
+                          className="absolute inset-0 z-10"
+                          href={`/product/${item._id}`}
+                        >
+                          <Button
+                            isIconOnly
+                            className="rounded-full bg-zinc-300"
+                          >
+                            <ShoppingCart />
+                          </Button>
+                        </Link>
                       </CardHeader>
                       <CardBody className="p-0">
                         <Swiper

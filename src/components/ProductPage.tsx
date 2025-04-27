@@ -63,7 +63,7 @@ export function ProductPage(props: Props) {
 
   return (
     <div className="bg-gray-100">
-      <div className="grid md:grid-cols-2 gap-6 items-start max-w-6xl mx-auto p-5">
+      <div className="grid md:grid-cols-2 gap-6 items-start max-w-6xl mx-auto">
         {loading ? (
           // Skeleton Loader with equal height columns
           <>
