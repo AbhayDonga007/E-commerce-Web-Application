@@ -16,6 +16,7 @@ import {
   Skeleton,
 } from "@heroui/react";
 import { Product } from "@/lib/interface";
+import { useRouter } from "next/navigation";
 
 const pacifico = Pacifico({
   subsets: ["latin"],
@@ -31,6 +32,7 @@ const libre = Libre_Baskerville({
 
 export function CardProduct() {
   const [data, setData] = useState<Product[] | null>(null);
+  const router = useRouter();
 
   useEffect(() => {
     const getData = async () => {
@@ -68,7 +70,7 @@ export function CardProduct() {
                   key={index}
                   className="w-full rounded-[22px] space-y-5 p-4"
                 >
-                  <Skeleton className="rounded-[22px] h-[400px]">
+                  <Skeleton className="rounded-[22px] h-[250px]">
                     <div className="h-24 rounded-lg bg-default-300" />
                   </Skeleton>
                   <div className="space-y-3">
@@ -107,11 +109,8 @@ export function CardProduct() {
                           <Button
                             isIconOnly
                             className="bg-red-600 text-white font-bold px-2 py-1 rounded-full text-sm"
+                            onClick={() => router.push(`/product/${item._id}`)}
                           >
-                            <Link
-                              className="absolute inset-0 z-10"
-                              href={`/product/${item._id}`}
-                            ></Link>
                             -{Math.round(discount)}%
                           </Button>
                         </CardHeader>
@@ -121,12 +120,9 @@ export function CardProduct() {
                           <Button
                             isIconOnly
                             className="rounded-full bg-zinc-300"
+                            onClick={() => router.push(`/product/${item._id}`)}
                           >
                             <ShoppingCart />
-                            <Link
-                              className="absolute inset-0 z-10"
-                              href={`/product/${item._id}`}
-                            ></Link>
                           </Button>
                         </CardHeader>
 
@@ -142,7 +138,10 @@ export function CardProduct() {
                             }}
                           >
                             {item.images.map((image, imgIndex) => (
-                              <SwiperSlide key={imgIndex}>
+                              <SwiperSlide key={imgIndex} onClick={() =>
+                                router.push(`/product/${item._id}`)
+                              } // make entire slide clickable
+                              className="relative cursor-pointer" >
                                 <Image
                                   alt="Product Image"
                                   className="object-cover w-full aspect-[3/4] group-hover:opacity-80 transition-opacity gap-y-3"

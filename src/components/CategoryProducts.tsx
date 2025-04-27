@@ -16,6 +16,7 @@ import {
   Skeleton,
 } from "@heroui/react";
 import { Product } from "@/lib/interface";
+import { useRouter } from "next/navigation";
 
 const pacifico = Pacifico({
   subsets: ["latin"],
@@ -34,6 +35,7 @@ type Props = {
 const CategoryProducts = (props: Props) => {
   const name = props.type;
   const [data, setData] = useState<Product[] | null>(null);
+  const router = useRouter();
 
   useEffect(() => {
     const getData = async () => {
@@ -64,7 +66,7 @@ const CategoryProducts = (props: Props) => {
                   key={index}
                   className="w-full rounded-[22px] space-y-5 p-4"
                 >
-                  <Skeleton className="rounded-[22px] h-[400px]">
+                  <Skeleton className="rounded-[22px] h-[250px]">
                     <div className="h-24 rounded-lg bg-default-300" />
                   </Skeleton>
                   <div className="space-y-3">
@@ -94,30 +96,29 @@ const CategoryProducts = (props: Props) => {
                       shadow="sm"
                       isPressable
                     >
+                      {/* Discount Badge */}
                       <CardHeader className="p-2 absolute z-10 flex-col items-start">
-                        <Link href={`/product/${item._id}`} className="z-10">
-                          <Button
-                            isIconOnly
-                            className="bg-red-600 text-white font-bold px-2 py-1 rounded-full text-sm"
-                          >
-                            -{Math.round(discount)}%
-                          </Button>
-                        </Link>
+                        <Button
+                          isIconOnly
+                          className="bg-red-600 text-white font-bold px-2 py-1 rounded-full text-sm"
+                          onClick={() => router.push(`/product/${item._id}`)} 
+                        >
+                          -{Math.round(discount)}%
+                        </Button>
                       </CardHeader>
 
+                      {/* Cart Icon Button */}
                       <CardHeader className="p-2 absolute z-10 flex-col items-end">
-                        <Link
-                          className="absolute inset-0 z-10"
-                          href={`/product/${item._id}`}
+                        <Button
+                          isIconOnly
+                          className="rounded-full bg-zinc-300"
+                          onClick={() => router.push(`/product/${item._id}`)} // navigate on click
                         >
-                          <Button
-                            isIconOnly
-                            className="rounded-full bg-zinc-300"
-                          >
-                            <ShoppingCart />
-                          </Button>
-                        </Link>
+                          <ShoppingCart />
+                        </Button>
                       </CardHeader>
+
+                      {/* Product Image Carousel */}
                       <CardBody className="p-0">
                         <Swiper
                           className="w-full bg-black/30 bg-blur"
@@ -126,7 +127,13 @@ const CategoryProducts = (props: Props) => {
                           pagination={{ clickable: true, dynamicBullets: true }}
                         >
                           {item.images.map((image, index) => (
-                            <SwiperSlide key={index}>
+                            <SwiperSlide
+                              key={index}
+                              onClick={() =>
+                                router.push(`/product/${item._id}`)
+                              } // make entire slide clickable
+                              className="relative cursor-pointer" // add cursor pointer
+                            >
                               <Image
                                 alt={item.name}
                                 className="object-cover w-full aspect-[3/4] group-hover:opacity-80 transition-opacity"
@@ -134,14 +141,12 @@ const CategoryProducts = (props: Props) => {
                                 src={image}
                                 width={400}
                               />
-                              <Link
-                                className="absolute inset-0 z-10"
-                                href={`/product/${item._id}`}
-                              />
                             </SwiperSlide>
                           ))}
                         </Swiper>
                       </CardBody>
+
+                      {/* Product Details */}
                       <CardFooter className="flex flex-col bg-white/30 border-t-1 border-zinc-100/50 z-10">
                         <p className="text-black text-[14px] line-clamp-1 text-start font-semibold">
                           {item.name}
