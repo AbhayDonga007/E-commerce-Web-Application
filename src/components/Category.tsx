@@ -414,12 +414,13 @@ export function Category() {
 
 "use client"
 import Link from "next/link"
-import Image from "next/image"
+import Image, { StaticImageData } from "next/image"
 import { Card, CardBody, CardFooter, Divider } from "@nextui-org/react"
 import { Swiper, SwiperSlide } from "swiper/react"
 import { A11y, Navigation, Pagination, Scrollbar } from "swiper/modules"
 import { Pacifico } from "next/font/google"
 import { Libre_Baskerville } from "next/font/google"
+
 
 // Import Swiper styles
 import "swiper/css"
@@ -438,6 +439,12 @@ import img7 from "../images/cord-set.jpg"
 import img8 from "../images/tunic.jpg"
 import img9 from "../images/saree.jpg"
 
+interface CategoryCardProps {
+  title: string;
+  image: StaticImageData;
+  slug: string;
+}
+
 const pacifico = Pacifico({ subsets: ["latin"], weight: "400" })
 const libre = Libre_Baskerville({ subsets: ["latin"], weight: "700" })
 
@@ -453,7 +460,7 @@ const categories = [
   { title: "Luxury Dripping Sarees", image: img9, slug: "Luxury Dripping Sarees" },
 ]
 
-const CategoryCard = ({ title, image, slug }) => {
+const CategoryCard: React.FC<CategoryCardProps> = ({ title, image, slug }) => {
   return (
     <div className="grid gap-4">
       <div className="grid gap-2.5 relative group">
