@@ -65,7 +65,6 @@ export function ProductPage(props: Props) {
     <div className="bg-gray-100">
       <div className="grid md:grid-cols-2 gap-6 items-start max-w-6xl mx-auto">
         {loading ? (
-          // Skeleton Loader with equal height columns
           <>
             <div className="w-full flex justify-center items-center">
               <Skeleton className="w-[376px] h-[500px] rounded-lg" />
@@ -84,7 +83,6 @@ export function ProductPage(props: Props) {
           </>
         ) : (
           <>
-            {/* Image Slider */}
             <Swiper
               className="w-[376px] sm:max-w-screen rounded-lg bg-black/10 bg-blur"
               modules={[Navigation, Pagination, Scrollbar, A11y]}

@@ -1,7 +1,6 @@
 "use client";
 import { use } from "react";
 import CategoryProducts from "@/components/CategoryProducts";
-import Nav from "@/components/Nav";
 import axios from "axios";
 import { useEffect } from "react";
 
@@ -10,7 +9,6 @@ type PageProps = {
 };
 
 const Page = ({ params }: PageProps) => {
-  // Unwrap the params using React.use()
   const { categoryName } = use(params);
   const name = decodeURIComponent(categoryName);
 

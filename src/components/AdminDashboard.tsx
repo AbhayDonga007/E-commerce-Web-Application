@@ -91,26 +91,12 @@ export function AdminDashboard() {
 
   return (
     <div className="flex min-h-screen">
-      {/* Sidebar */}
-      
-
-      {/* Main Content */}
       <main className="flex-1 overflow-auto">
         <div className="flex h-16 items-center justify-between border-b px-8">
           <h1 className="text-xl font-semibold">Dashboard</h1>
-          {/* <div className="flex items-center gap-4">
-            <input
-              type="search"
-              placeholder="Search..."
-              className="rounded-md border px-3 py-1"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-            />
-          </div> */}
         </div>
 
         <div className="p-8">
-          {/* Stats */}
           <div className="mb-8 grid gap-4 md:grid-cols-3">
             <Card>
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
@@ -146,59 +132,6 @@ export function AdminDashboard() {
               </CardContent>
             </Card>
           </div>
-
-          {/* Charts */}
-          {/* <div className="mb-8 grid gap-4 md:grid-cols-2">
-            <Card>
-              <CardHeader>
-                <CardTitle>Sales Statistics</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="h-[200px]">
-                  <BarChart className="h-full w-full text-muted-foreground" />
-                </div>
-              </CardContent>
-            </Card>
-            <Card>
-              <CardHeader>
-                <CardTitle>Visitors</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="flex flex-col items-center gap-4">
-                  <div className="relative h-40 w-40">
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <div className="text-center">
-                        <div className="text-2xl font-bold">97.14%</div>
-                        <div className="text-xs text-muted-foreground">
-                          Website growth
-                        </div>
-                      </div>
-                    </div>
-                    <Progress
-                      value={97.14}
-                      className="h-full w-full rounded-full"
-                    />
-                  </div>
-                  <div className="grid w-full grid-cols-3 gap-2 text-center text-sm">
-                    <div>
-                      <div className="font-medium">Social media</div>
-                      <div className="text-muted-foreground">50%</div>
-                    </div>
-                    <div>
-                      <div className="font-medium">Affiliate visitors</div>
-                      <div className="text-muted-foreground">18%</div>
-                    </div>
-                    <div>
-                      <div className="font-medium">By advertisement</div>
-                      <div className="text-muted-foreground">20%</div>
-                    </div>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          </div> */}
-
-          {/* Latest Orders */}
           <Card>
             <CardHeader>
               <CardTitle>Latest Orders</CardTitle>

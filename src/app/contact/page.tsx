@@ -84,9 +84,6 @@ export default function Contact() {
             <li>Saturday: 10:00 AM - 4:00 PM IST</li>
             <li>Sunday: Closed</li>
           </ul>
-          {/* <p className="mt-4">
-            For press inquiries or collaboration proposals, please email us at press@eroedesigner.com.
-          </p> */}
         </div>
       </div>
     </div>

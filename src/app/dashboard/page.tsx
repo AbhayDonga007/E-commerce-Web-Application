@@ -31,7 +31,6 @@ import { useSession } from "@clerk/nextjs";
 type Props = {};
 
 const DashBoard = (props: Props) => {
-  // await new Promise((resolve) => setTimeout(resolve,3000));
   const session = useSession();
     const userId = session.session?.user.id;
       if(userId){
@@ -39,21 +38,6 @@ const DashBoard = (props: Props) => {
       }
   return (
     <>
-      {/* <Button
-        isIconOnly
-        onClick={() => console.log("Cliked")}
-        className="fixed w-[50px] h-[50px] bottom-[30px] left-[30px] bg-[#00e676] rounded-full z-30"
-      >
-        <Link
-          href="https://chat.whatsapp.com/JcalaznsoG2KvWcPJXdRmE"
-          target="_"
-        >
-          <i
-            className="pi pi-whatsapp text-white"
-            style={{ fontSize: "1.8rem" }}
-          ></i>
-        </Link>
-      </Button> */}
       <Banner />
       <Category />
       <ShowRoom />
@@ -63,13 +47,9 @@ const DashBoard = (props: Props) => {
       <Swiper
         className="w-full bg-black/30 bg-blur"
         modules={[Navigation, Pagination, Scrollbar, A11y]}
-        // spaceBetween={50}
         slidesPerView={1}
-        // navigation
         pagination={{ clickable: true, dynamicBullets: true }}
         scrollbar={{ draggable: true }}
-        // onSwiper={(swiper) => console.log(swiper)}
-        // onSlideChange={() => console.log('slide change')}
       >
         <SwiperSlide>
           <Image
@@ -84,13 +64,9 @@ const DashBoard = (props: Props) => {
       <Swiper
         className="w-full bg-black/30 bg-blur"
         modules={[Navigation, Pagination, Scrollbar, A11y]}
-        // spaceBetween={50}
         slidesPerView={1}
-        // navigation
         pagination={{ clickable: true, dynamicBullets: true }}
         scrollbar={{ draggable: true }}
-        // onSwiper={(swiper) => console.log(swiper)}
-        // onSlideChange={() => console.log('slide change')}
       >
         <SwiperSlide>
           <Image
@@ -106,13 +82,9 @@ const DashBoard = (props: Props) => {
       <Swiper
         className="w-full bg-black/30 bg-blur"
         modules={[Navigation, Pagination, Scrollbar, A11y]}
-        // spaceBetween={50}
         slidesPerView={1}
-        // navigation
         pagination={{ clickable: true, dynamicBullets: true }}
         scrollbar={{ draggable: true }}
-        // onSwiper={(swiper) => console.log(swiper)}
-        // onSlideChange={() => console.log('slide change')}
       >
         <SwiperSlide>
           <Image
@@ -128,13 +100,9 @@ const DashBoard = (props: Props) => {
       <Swiper
         className="w-full bg-black/30 bg-blur"
         modules={[Navigation, Pagination, Scrollbar, A11y]}
-        // spaceBetween={50}
         slidesPerView={1}
-        // navigation
         pagination={{ clickable: true, dynamicBullets: true }}
         scrollbar={{ draggable: true }}
-        // onSwiper={(swiper) => console.log(swiper)}
-        // onSlideChange={() => console.log('slide change')}
       >
         <SwiperSlide>
           <Image
@@ -150,13 +118,9 @@ const DashBoard = (props: Props) => {
       <Swiper
         className="w-full bg-black/30 bg-blur"
         modules={[Navigation, Pagination, Scrollbar, A11y]}
-        // spaceBetween={50}
         slidesPerView={1}
-        // navigation
         pagination={{ clickable: true, dynamicBullets: true }}
         scrollbar={{ draggable: true }}
-        // onSwiper={(swiper) => console.log(swiper)}
-        // onSlideChange={() => console.log('slide change')}
       >
         <SwiperSlide>
           <Image

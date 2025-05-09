@@ -117,17 +117,6 @@ const Page = () => {
   };
 
   const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    // console.log(e);
-    // let render = new FileReader();
-    // render.readAsDataURL(e.target.files![0])
-    // render.onload = () => {
-    //   console.log(render.result);
-    //   setProduct({...product,image: render.result});
-    // }
-    // render.onerror = () => {
-    //   console.log("Error");
-    // }
-
     let files = e.target.files;
     console.log(files);
     let reader = new FileReader();
@@ -242,8 +231,6 @@ const Page = () => {
                 </div>
 
                 <div className="space-y-2">
-                  {/* <Label htmlFor="last-name">Size</Label>
-                  <Input id="last-name" placeholder="Size" /> */}
                   <Select
                     label="Product Size"
                     selectionMode="multiple"
@@ -299,7 +286,6 @@ const Page = () => {
                     </div>
                   </div>
                 </div>
-                {/* {image=="" || image == null ? "" : <Image alt='Image' width={100} height={100} src={image} />} */}
               </div>
 
               <div className="grid grid-cols-2 gap-4">
@@ -324,8 +310,6 @@ const Page = () => {
                   </div>
                 </div>
                 <div className="space-y-2">
-                  {/* <Label htmlFor="last-name">Size</Label>
-                  <Input id="last-name" placeholder="Size" /> */}
                   <Select
                     label="Product Colors"
                     selectionMode="multiple"
@@ -339,7 +323,6 @@ const Page = () => {
                     ))}
                   </Select>
                 </div>
-                {/* {image=="" || image == null ? "" : <Image alt='Image' width={100} height={100} src={image} />} */}
               </div>
 
               <div className="grid grid-cols-2 gap-4">
@@ -362,7 +345,6 @@ const Page = () => {
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="first-name">Upload Images</Label>
-                  {/* <Input type="file" accept="image/*" placeholder="Image" onChange={handleImageUpload}/> */}
                   <div className="w-full flex flex-col gap-4">
                     <div
                       key="md"

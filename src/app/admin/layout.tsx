@@ -81,11 +81,6 @@ export default function RootLayout({
                 >
                   <item.icon className="h-4 w-4" />
                   <span>{item.label}</span>
-                  {/* {item.badge && (
-                    <Badge variant="solid" className="ml-auto">
-                      {item.badge}
-                    </Badge>
-                  )} */}
                 </Button>
               </Link>
             ))}

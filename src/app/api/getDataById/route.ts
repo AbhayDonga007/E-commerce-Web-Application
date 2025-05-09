@@ -1,4 +1,4 @@
-export const dynamic = "force-dynamic"; // Ensures API routes are always dynamic
+export const dynamic = "force-dynamic"; 
 
 import { connectMongoDB } from "@/lib/mongodb";
 import Product from "@/models/products";
@@ -6,8 +6,6 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(req: NextRequest) {
   try {
-    // const changeStream = Product.watch();
-    // changeStream.on("change",async (event) => {
       const { searchParams } = new URL(req.url);
       const id = searchParams.get("id");
       await connectMongoDB();

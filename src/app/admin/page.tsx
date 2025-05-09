@@ -13,7 +13,6 @@ const Admin = () => {
   console.log(role);
 
   useEffect(() => {
-    // If session is loaded and user is not an admin, redirect to sign-in
     if (isLoaded && role !== "admin") {
       router.push("/sign-in");
     }

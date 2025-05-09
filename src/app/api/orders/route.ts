@@ -5,21 +5,19 @@ import Order from "@/models/orders";
 import { NextResponse } from "next/server";
 
 export async function GET(req: Request) {
-  await connectMongoDB(); // Connect to MongoDB
+  await connectMongoDB(); 
   try {
     const { searchParams } = new URL(req.url);
     const customerEmail = searchParams.get("customerEmail")?.toLowerCase();
-    const statusFilter = searchParams.get("status"); // Optional status filter
-    const searchQuery = searchParams.get("search"); // Optional search query
+    const statusFilter = searchParams.get("status"); 
+    const searchQuery = searchParams.get("search"); 
 
     if (!customerEmail) {
       return NextResponse.json({ error: "Customer email is required." }, { status: 400 });
     }
 
-    // Valid statuses from schema
     const validStatuses = ["ordered", "packed", "shipped", "out_for_delivery", "delivered"];
 
-    // Build query object
     let query: any = { customerEmail };
 
     if (statusFilter && validStatuses.includes(statusFilter)) {
@@ -28,12 +26,11 @@ export async function GET(req: Request) {
 
     if (searchQuery) {
       query.$or = [
-        { orderId: { $regex: searchQuery, $options: "i" } }, // Search orderId
-        { "products.productId": { $regex: searchQuery, $options: "i" } }, // Search inside products
+        { orderId: { $regex: searchQuery, $options: "i" } }, 
+        { "products.productId": { $regex: searchQuery, $options: "i" } }, 
       ];
     }
 
-    // Fetch orders and populate product details
     const orders = await Order.find(query).populate("products.productId");
     
 

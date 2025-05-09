@@ -16,7 +16,7 @@ import {
   Skeleton,
 } from "@heroui/react";
 import { Product } from "@/lib/interface";
-import { useRouter } from 'next/navigation';
+import { useRouter } from "next/navigation";
 
 const pacifico = Pacifico({
   subsets: ["latin"],
@@ -55,10 +55,14 @@ export function CardProduct() {
         <div className="text-center md:items-center gap-4 md:gap-8">
           <div className="grid gap-3">
             <div className={pacifico.className}>
-              <h1 className="text-4xl font-bold">Shop By Collection</h1>
+              <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center">
+                Shop by Collection
+              </h1>
             </div>
             <div className={libre.className}>
-              <p className="text-gray-500">Fulfill the Fashion Forever</p>
+              <p className="text-sm sm:text-base md:text-lg text-gray-500 text-center">
+                Fulfill the Fashion Forever
+              </p>
             </div>
           </div>
         </div>
@@ -97,14 +101,14 @@ export function CardProduct() {
                 return (
                   <div key={item._id} className="grid">
                     <div className="grid relative group">
-                        <Card
-                          isFooterBlurred
-                          className="rounded-[22px] bg-gray-200"
-                          shadow="sm"
-                          isPressable
-                          onPress={() => console.log("Item pressed")}
-                          >
-                          <Link href={`/product/${item._id}`}>
+                      <Card
+                        isFooterBlurred
+                        className="rounded-[22px] bg-gray-200"
+                        shadow="sm"
+                        isPressable
+                        onPress={() => console.log("Item pressed")}
+                      >
+                        <Link href={`/product/${item._id}`}>
                           <CardHeader className="p-2 absolute z-10 flex-col items-start">
                             <Button
                               isIconOnly
@@ -145,7 +149,9 @@ export function CardProduct() {
                                 clickable: true,
                                 dynamicBullets: true,
                               }}
-                              onClick={() => router.push(`/product/${item._id}`)}
+                              onClick={() =>
+                                router.push(`/product/${item._id}`)
+                              }
                             >
                               {item.images.map((image, imgIndex) => (
                                 <SwiperSlide key={imgIndex}>
@@ -185,8 +191,8 @@ export function CardProduct() {
                               </p>
                             </div>
                           </CardFooter>
-                      </Link>
-                        </Card>
+                        </Link>
+                      </Card>
                     </div>
                   </div>
                 );

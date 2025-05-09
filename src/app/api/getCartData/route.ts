@@ -1,7 +1,6 @@
-export const dynamic = "force-dynamic"; // Ensures API routes are always dynamic
+export const dynamic = "force-dynamic"; 
 import { connectMongoDB } from '@/lib/mongodb';
 import Cart from '@/models/cart';
-import Product from '@/models/products';
 import { NextRequest, NextResponse } from 'next/server';
 
 export async function GET(req:NextRequest) {
@@ -20,17 +19,6 @@ export async function GET(req:NextRequest) {
         if (!cart) {
             return NextResponse.json({ message: "Cart not found" }, { status: 201 });
         }
-        // const productIds = cart.reduce((acc, item) => {
-        //     item.products.forEach(product => {
-        //         acc.push(product.productId);
-        //     });
-        //     return acc;
-        // }, []);
-        // const products = await Product.find({ _id: { $in: productIds } });
-        // const products = cart.products.map(item => ({
-        //     product: item.productId,
-        //     productQnt: item.productQnt
-        // }));
         
         return NextResponse.json(cart);
     } catch (error) {

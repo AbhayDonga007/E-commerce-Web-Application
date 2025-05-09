@@ -16,7 +16,7 @@ import {
   Skeleton,
 } from "@heroui/react";
 import { Product } from "@/lib/interface";
-import { useRouter } from 'next/navigation';
+import { useRouter } from "next/navigation";
 
 const pacifico = Pacifico({
   subsets: ["latin"],
@@ -51,10 +51,14 @@ const CategoryProducts = (props: Props) => {
         <div className="text-center md:items-center gap-4 md:gap-8">
           <div className="grid gap-3">
             <div className={pacifico.className}>
-              <h1 className="text-4xl font-bold">Best Collection of {name}</h1>
+              <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center">
+                Best Collection of {name}
+              </h1>
             </div>
             <div className={libre.className}>
-              <p className="text-gray-500">Timeless Elegance, Everyday Style</p>
+              <p className="text-sm sm:text-base md:text-lg text-gray-500 text-center">
+                Timeless Elegance, Everyday Style
+              </p>
             </div>
           </div>
         </div>
@@ -90,90 +94,16 @@ const CategoryProducts = (props: Props) => {
                       100
                     : 0;
                 return (
-                  // <div key={item._id} className="grid">
-                  //   <Card
-                  //     className="rounded-[22px] bg-gray-200"
-                  //     shadow="sm"
-                  //     isPressable
-                  //   >
-                  //     <Link href={`/product/${item._id}`}>
-                  //     <CardHeader className="p-2 absolute z-10 flex-col items-start">
-                  //       {/* <Link href={`/product/${item._id}`} className="z-10"> */}
-                  //         <Button
-                  //           isIconOnly
-                  //           className="bg-red-600 text-white font-bold px-2 py-1 rounded-full text-sm"
-                  //         >
-                  //           -{Math.round(discount)}%
-                  //           <Link
-                  //               className="absolute inset-0 z-10"
-                  //               href={`/product/${item._id}`}
-                  //             ></Link>
-                  //         </Button>
-                  //       {/* </Link> */}
-                  //     </CardHeader>
-
-                  //     <CardHeader className="p-2 absolute z-10 flex-col items-end">
-                  //       <Button isIconOnly className="rounded-full bg-zinc-300">
-                  //         <ShoppingCart />
-                  //         <Link
-                  //           className="absolute inset-0 z-10"
-                  //           href={`/product/${item._id}`}
-                  //         />
-                  //       </Button>
-                  //     </CardHeader>
-                  //     <CardBody className="p-0">
-                  //       <Swiper
-                  //         className="w-full bg-black/30 bg-blur"
-                  //         modules={[Navigation, Pagination, Scrollbar, A11y]}
-                  //         slidesPerView={1}
-                  //         pagination={{ clickable: true, dynamicBullets: true }}
-                  //       >
-                  //         {item.images.map((image, index) => (
-                  //           <SwiperSlide key={index}>
-                  //             <Image
-                  //               alt={item.name}
-                  //               className="object-cover w-full aspect-[3/4] group-hover:opacity-80 transition-opacity"
-                  //               height={350}
-                  //               src={image}
-                  //               width={400}
-                  //             />
-                  //             <Link
-                  //               className="absolute inset-0 z-10"
-                  //               href={`/product/${item._id}`}
-                  //             />
-                  //           </SwiperSlide>
-                  //         ))}
-                  //       </Swiper>
-                  //     </CardBody>
-                  //     <CardFooter className="flex flex-col bg-white/30 border-t-1 border-zinc-100/50 z-10">
-                  //       <p className="text-black text-[14px] line-clamp-1 text-start font-semibold">
-                  //         {item.name}
-                  //       </p>
-                  //       <p className="text-[12px] text-gray-500 text-center font-semibold">
-                  //         {item.type}
-                  //       </p>
-                  //       <div className="flex flex-row gap-2">
-                  //         <p className="text-red-700 text-[14px] font-semibold">
-                  //           ₹ {item.customerPrize}
-                  //         </p>
-                  //         <p className="text-red-700 text-[14px] font-semibold line-through">
-                  //           ₹ {item.productPrize}
-                  //         </p>
-                  //       </div>
-                  //     </CardFooter>
-                  //     </Link>
-                  //   </Card>
-                  // </div>
                   <div key={item._id} className="grid">
                     <div className="grid relative group">
-                        <Card
-                          isFooterBlurred
-                          className="rounded-[22px] bg-gray-200"
-                          shadow="sm"
-                          isPressable
-                          onPress={() => console.log("Item pressed")}
-                          >
-                          <Link href={`/product/${item._id}`}>
+                      <Card
+                        isFooterBlurred
+                        className="rounded-[22px] bg-gray-200"
+                        shadow="sm"
+                        isPressable
+                        onPress={() => console.log("Item pressed")}
+                      >
+                        <Link href={`/product/${item._id}`}>
                           <CardHeader className="p-2 absolute z-10 flex-col items-start">
                             <Button
                               isIconOnly
@@ -214,7 +144,9 @@ const CategoryProducts = (props: Props) => {
                                 clickable: true,
                                 dynamicBullets: true,
                               }}
-                              onClick={() => router.push(`/product/${item._id}`)}
+                              onClick={() =>
+                                router.push(`/product/${item._id}`)
+                              }
                             >
                               {item.images.map((image, imgIndex) => (
                                 <SwiperSlide key={imgIndex}>
@@ -254,8 +186,8 @@ const CategoryProducts = (props: Props) => {
                               </p>
                             </div>
                           </CardFooter>
-                      </Link>
-                        </Card>
+                        </Link>
+                      </Card>
                     </div>
                   </div>
                 );

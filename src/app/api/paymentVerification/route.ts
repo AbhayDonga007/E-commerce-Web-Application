@@ -1,32 +1,3 @@
-// import { NextRequest, NextResponse } from "next/server";
-// import crypto from "crypto";
-
-// export async function POST(req: NextRequest) {
-//     try {
-//         const body = await req.text();
-//         const params = new URLSearchParams(body);
-//         console.log("Verification", params);
-
-//         const razorpay_order_id = params.get('razorpay_order_id');
-//         const razorpay_payment_id = params.get('razorpay_payment_id');
-//         const razorpay_signature = params.get('razorpay_signature');
-
-//         const temp = razorpay_order_id + "|" + razorpay_payment_id;
-
-//         const expectedSignature = crypto.createHmac('sha256',process.env.ROZORPAY_SECRET_KEY!).update(temp.toString()).digest('hex');
-
-//         if (expectedSignature === razorpay_signature) {
-//             return NextResponse.redirect(new URL("/api/orders", req.url),200);
-//         } else {
-//             return NextResponse.json({ message: "Invalid Signature", signatureIsValid: false,success:false }, { status: 400 });
-//         }
-
-//     } catch (error) {
-//         console.error(error);
-//         return NextResponse.json({ message: "Method Not Allowed" }, { status: 500 });
-//     }
-// }
-
 import { NextRequest, NextResponse } from "next/server";
 import crypto from "crypto";
 import { connectMongoDB } from "@/lib/mongodb";
@@ -56,7 +27,6 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // Save the order to the database
     const newOrder = await Order.create({
       orderId: razorpay_order_id,
       paymentId: razorpay_payment_id,
@@ -81,8 +51,6 @@ export async function POST(req: NextRequest) {
 
     console.log("Order Stored:", newOrder);
 
-    // Clear Cart (Assuming you use session storage or database for the cart)
-    // If using database-based cart system:
     await Cart.deleteOne({ userId: customer.id });
 
     return NextResponse.json({ message: "Payment Successful, Order Stored" });

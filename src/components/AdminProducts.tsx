@@ -138,12 +138,10 @@ export function AdminProducts() {
               ? ((productPrize - customerPrize) / productPrize) * 100
               : 0;
           return (
-            // <BackgroundGradient key={index} className="rounded-[22px] max-w-sm bg-white dark:bg-zinc-900">
             <div key={index} className="grid">
               <div className="grid relative group">
                 <Card
                   isFooterBlurred
-                  // xl:min-h-[390px] min-h-[270px] max-h-[500px]
                   className="rounded-[22px] bg-gray-200"
                   shadow="sm"
                   key={index}
@@ -155,52 +153,33 @@ export function AdminProducts() {
                       isIconOnly
                       className="bg-red-600 text-white font-bold px-2 py-1 rounded-full text-sm"
                     >
-                      {/* <Link
-                        className="absolute inset-0 z-10"
-                        href={`/product/${item._id}`}
-                      ></Link> */}
                       -{Math.round(discount)}%
                     </Button>
                   </CardHeader>
                   <CardHeader className="p-2 absolute z-10 flex-col items-end">
                     <Button isIconOnly className="rounded-full bg-zinc-300 ">
                       <ShoppingCart />
-                      {/* <Link
-                        className="absolute inset-0 z-10"
-                        href={`/product/${item._id}`}
-                      ></Link> */}
                     </Button>
                   </CardHeader>
                   <CardBody className="p-0">
                     <Swiper
                       className="w-full bg-black/30 bg-blur"
                       modules={[Navigation, Pagination, Scrollbar, A11y]}
-                      // spaceBetween={50}
                       slidesPerView={1}
-                      // navigation
                       pagination={{
                         clickable: true,
                         dynamicBullets: true,
                       }}
-                      // scrollbar={{ draggable: true }}
-                      // onSwiper={(swiper) => console.log(swiper)}
-                      // onSlideChange={() => console.log('slide change')}
                     >
-                      {/* {item.images.map((image, index) => ( */}
-                        <SwiperSlide key={index}>
-                          <Image
-                            alt="Leather Jacket"
-                            className="object-cover w-full aspect-[3/4] group-hover:opacity-80 transition-opacity gap-y-3"
-                            height={350}
-                            src={item.images[0]}
-                            width={400}
-                          />
-                          {/* <Link
-                            className="absolute inset-0 z-10"
-                            href={`/product/${item._id}`}
-                          ></Link> */}
-                        </SwiperSlide>
-                      {/* ))} */}
+                      <SwiperSlide key={index}>
+                        <Image
+                          alt="Leather Jacket"
+                          className="object-cover w-full aspect-[3/4] group-hover:opacity-80 transition-opacity gap-y-3"
+                          height={350}
+                          src={item.images[0]}
+                          width={400}
+                        />
+                      </SwiperSlide>
                     </Swiper>
                   </CardBody>
                   <CardFooter className="flex flex-col relative bg-white/30 bottom-0 border-t-1 border-zinc-100/50 z-10">
@@ -240,22 +219,9 @@ export function AdminProducts() {
                 </Card>
               </div>
             </div>
-            // </BackgroundGradient>
           );
         })}
       </div>
     </div>
   );
 }
-// <CardFooter className="p-4 pt-0">
-//   <div className="flex w-full justify-between">
-//     <Button variant="ghost" size="sm">
-//       <Pencil className="mr-2 h-4 w-4" />
-//       Edit
-//     </Button>
-//     <Button variant="ghost" size="sm" className="text-red-500 hover:text-red-600">
-//       <Trash2 className="mr-2 h-4 w-4" />
-//       Delete
-//     </Button>
-//   </div>
-// </CardFooter>

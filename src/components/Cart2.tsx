@@ -38,7 +38,6 @@ import { Button } from "@nextui-org/button";
 import toast from "react-hot-toast";
 import { useSession } from "@clerk/nextjs";
 
-// Define types for our data
 interface CartItem {
   id: string;
   name: string;
@@ -66,12 +65,10 @@ export default function OrderModal() {
   const userId = session.session?.user.id;
   console.log(cart);
 
-  // State for checkout steps
   const [checkoutStep, setCheckoutStep] = useState<
     "cart" | "details" | "payment"
   >("cart");
 
-  // State for customer details
   const [customerDetails, setCustomerDetails] = useState<CustomerDetails>({
     id: userId || "guest",
     name: "",
@@ -83,7 +80,6 @@ export default function OrderModal() {
     pincode: 0,
   });
 
-  // Calculate order summary
   const subtotal =
     cart?.products.reduce(
       (total, item) => total + item.productId.customerPrize * item.productQnt,
@@ -96,38 +92,31 @@ export default function OrderModal() {
   const totalTax = sgstAmount + cgstAmount;
   const totalAmount = subtotal + totalTax;
 
-  // Handle customer details form submission
   const handleDetailsSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setCheckoutStep("payment");
   };
 
-  // Handle form input changes
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setCustomerDetails((prev) => ({ ...prev, [name]: value }));
   };
 
-  // Handle state selection
   const handleStateChange = (value: string) => {
     setCustomerDetails((prev) => ({ ...prev, state: value }));
   };
 
-  // Reset checkout process
   const resetCheckout = () => {
     setCheckoutStep("cart");
   };
 
-  // Reset the entire modal when it's closed
   const handleOpenChange = (newOpen: boolean) => {
     setOpen(newOpen);
     if (!newOpen) {
-      // Reset to initial state when modal is closed
       setCheckoutStep("cart");
     }
   };
 
-  //  Razorpay
   const MakePayment = async () => {
     setOpen(false);
     const body = { totalAmount };
@@ -231,7 +220,6 @@ export default function OrderModal() {
             </DialogTitle>
           </DialogHeader>
 
-          {/* Cart Items View */}
           {checkoutStep === "cart" && (
             <div className="space-y-6">
               <div className="gap-2 grid grid-cols-2 sm:grid-cols-4">
@@ -295,7 +283,6 @@ export default function OrderModal() {
                 ))}
               </div>
 
-              {/* Order Summary */}
               <div className="bg-muted/40 rounded-lg p-4 space-y-3">
                 <h3 className="font-semibold text-[18px]">Order Summary</h3>
                 <div className="flex justify-between text-sm">
@@ -332,7 +319,6 @@ export default function OrderModal() {
             </div>
           )}
 
-          {/* Customer Details Form */}
           {checkoutStep === "details" && (
             <form onSubmit={handleDetailsSubmit} className="space-y-4">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -428,7 +414,6 @@ export default function OrderModal() {
                 </div>
               </div>
 
-              {/* Order Summary in Details Step */}
               <div className="bg-muted/40 rounded-lg p-4 space-y-3">
                 <div className="font-semibold text-[18px]">Order Summary</div>
                 <div className="flex justify-between text-sm">
@@ -464,7 +449,6 @@ export default function OrderModal() {
             </form>
           )}
 
-          {/* Payment Step */}
           {checkoutStep === "payment" && (
             <div>
               <div className="bg-muted/40 rounded-lg p-4 space-y-2">
@@ -500,7 +484,6 @@ export default function OrderModal() {
                 </div>
               </div>
 
-              {/* Order Summary */}
               <div className="bg-muted/40 rounded-lg p-4 space-y-2">
                 <h3 className="font-semibold text-[18px]">Order Summary</h3>
                 <div className="flex justify-between text-sm">
