@@ -17,7 +17,9 @@ To read more about using these font, please visit the Next.js documentation:
 - App Directory: https://nextjs.org/docs/app/building-your-application/optimizing/fonts
 - Pages Directory: https://nextjs.org/docs/pages/building-your-application/optimizing/fonts
 **/
-"use client";
+
+
+/* "use client";
 import Link from "next/link";
 import img1 from "../images/designer-kurti.jpg";
 import img2 from "../images/pant-pair.jpg";
@@ -71,22 +73,15 @@ export function Category() {
         </div>
 
         <div className="grid grid-cols-2 xl:pl-[150px] xl:pr-[150px] md:grid-cols-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">
-          {/* <BackgroundGradient className="rounded-[22px] bg-white dark:bg-zinc-900"> */}
           <div className="grid gap-4">
             <div className="grid gap-2.5 relative group">
               <Card isFooterBlurred className="" shadow="lg" isPressable>
-                {/* hover:scale-110 ease-in duration-300 */}
                 <CardBody className="p-0">
                   <Swiper
                     className="w-full bg-black/30 bg-blur"
                     modules={[Navigation, Pagination, Scrollbar, A11y]}
-                    // spaceBetween={50}
                     slidesPerView={1}
-                    // navigation
                     pagination={{ clickable: true, dynamicBullets: true }}
-                    // scrollbar={{ draggable: true }}
-                    // onSwiper={(swiper) => console.log(swiper)}
-                    // onSlideChange={() => console.log('slide change')}
                   >
                     <SwiperSlide className="">
                       <Image
@@ -96,54 +91,33 @@ export function Category() {
                         src={img1}
                         width={350}
                       />
-                      {/* <video
-                        src="/videos/video2.mp4"
-                        className="object-cover aspect-[3/4] w-full opacity-90 transition-opacity gap-y-3"
-                        autoPlay
-                        loop
-                        muted
-                        playsInline
-                      /> */}
                       <Link
                         className="absolute inset-0 z-10"
-                        href={`/category/${encodeURIComponent("Designer Kurti")}`}
+                        href={`/category/${encodeURIComponent(
+                          "Designer Kurti"
+                        )}`}
                       />
                     </SwiperSlide>
                   </Swiper>
                 </CardBody>
                 <Divider />
                 <CardFooter className="bottom-0 flex-col items-center">
-                  {/* <Button className="bg-white text-black font-bold uppercase  px-3 py-3 rounded-lg text-sm"> */}
-                  {/* <Link
-                        className="absolute inset-0 z-10"
-                        href={`/category/Designer Kurti`}
-                      /> */}
                   <h4 className="font-bold truncate text-sm uppercase">
                     Designer Kurti
                   </h4>
-                  {/* </Button> */}
                 </CardFooter>
               </Card>
             </div>
           </div>
-          {/* </BackgroundGradient> */}
-
-          {/* <BackgroundGradient className="rounded-[22px] bg-white dark:bg-zinc-900"> */}
           <div className="grid gap-4">
             <div className="grid gap-2.5 relative group">
               <Card isFooterBlurred className="" shadow="lg" isPressable>
-                {/* hover:scale-110 ease-in duration-300 */}
                 <CardBody className="p-0">
                   <Swiper
                     className="w-full bg-black/30 bg-blur"
                     modules={[Navigation, Pagination, Scrollbar, A11y]}
-                    // spaceBetween={50}
                     slidesPerView={1}
-                    // navigation
                     pagination={{ clickable: true, dynamicBullets: true }}
-                    // scrollbar={{ draggable: true }}
-                    // onSwiper={(swiper) => console.log(swiper)}
-                    // onSlideChange={() => console.log('slide change')}
                   >
                     <SwiperSlide className="">
                       <Image
@@ -153,54 +127,34 @@ export function Category() {
                         src={img2}
                         width={350}
                       />
-                      {/* <video
-                        src="/videos/video4.mp4"
-                        className="object-cover aspect-[3/4] w-full opacity-90 transition-opacity gap-y-3"
-                        autoPlay
-                        loop
-                        muted
-                        playsInline
-                      /> */}
                       <Link
                         className="absolute inset-0 z-10"
-                        href={`/category/${encodeURIComponent("Elegant Pant Pair")}`}
+                        href={`/category/${encodeURIComponent(
+                          "Elegant Pant Pair"
+                        )}`}
                       />
                     </SwiperSlide>
                   </Swiper>
                 </CardBody>
                 <Divider />
                 <CardFooter className="bottom-0 flex-col items-center">
-                  {/* <Button className="bg-white text-black font-bold uppercase  px-3 py-3 rounded-lg text-sm"> */}
-                  {/* <Link
-                        className="absolute inset-0 z-10"
-                        href={`/category/Designer Kurti`}
-                      /> */}
                   <h4 className="font-bold truncate text-sm uppercase">
                     Elegant Pant Pair
                   </h4>
-                  {/* </Button> */}
                 </CardFooter>
               </Card>
             </div>
           </div>
-          {/* </BackgroundGradient> */}
 
-          {/* <BackgroundGradient className="rounded-[22px] bg-white dark:bg-zinc-900"> */}
           <div className="grid gap-4">
             <div className="grid gap-2.5 relative group">
               <Card isFooterBlurred className="" shadow="lg" isPressable>
-                {/* hover:scale-110 ease-in duration-300 */}
                 <CardBody className="p-0">
                   <Swiper
                     className="w-full bg-black/30 bg-blur"
                     modules={[Navigation, Pagination, Scrollbar, A11y]}
-                    // spaceBetween={50}
                     slidesPerView={1}
-                    // navigation
                     pagination={{ clickable: true, dynamicBullets: true }}
-                    // scrollbar={{ draggable: true }}
-                    // onSwiper={(swiper) => console.log(swiper)}
-                    // onSlideChange={() => console.log('slide change')}
                   >
                     <SwiperSlide className="">
                       <Image
@@ -210,54 +164,34 @@ export function Category() {
                         src={img3}
                         width={350}
                       />
-                      {/* <video
-                        src="/videos/video1.mp4"
-                        className="object-cover aspect-[3/4] w-full opacity-90 transition-opacity gap-y-3"
-                        autoPlay
-                        loop
-                        muted
-                        playsInline
-                      /> */}
                       <Link
                         className="absolute inset-0 z-10"
-                        href={`/category/${encodeURIComponent("Royal Gown Collection")}`}
+                        href={`/category/${encodeURIComponent(
+                          "Royal Gown Collection"
+                        )}`}
                       />
                     </SwiperSlide>
                   </Swiper>
                 </CardBody>
                 <Divider />
                 <CardFooter className="bottom-0 flex-col items-center">
-                  {/* <Button className="bg-white text-black font-bold uppercase  px-3 py-3 rounded-lg text-sm"> */}
-                  {/* <Link
-                        className="absolute inset-0 z-10"
-                        href={`/category/Designer Kurti`}
-                      /> */}
                   <h4 className="font-bold truncate text-sm uppercase">
                     Royal Gown
                   </h4>
-                  {/* </Button> */}
                 </CardFooter>
               </Card>
             </div>
           </div>
-          {/* </BackgroundGradient> */}
 
-          {/* <BackgroundGradient className="rounded-[22px] bg-white dark:bg-zinc-900"> */}
           <div className="grid gap-4">
             <div className="grid gap-2.5 relative group">
               <Card isFooterBlurred className="" shadow="lg" isPressable>
-                {/* hover:scale-110 ease-in duration-300 */}
                 <CardBody className="p-0">
                   <Swiper
                     className="w-full bg-black/30 bg-blur"
                     modules={[Navigation, Pagination, Scrollbar, A11y]}
-                    // spaceBetween={50}
                     slidesPerView={1}
-                    // navigation
                     pagination={{ clickable: true, dynamicBullets: true }}
-                    // scrollbar={{ draggable: true }}
-                    // onSwiper={(swiper) => console.log(swiper)}
-                    // onSlideChange={() => console.log('slide change')}
                   >
                     <SwiperSlide className="">
                       <Image
@@ -269,44 +203,32 @@ export function Category() {
                       />
                       <Link
                         className="absolute inset-0 z-10"
-                        href={`/category/${encodeURIComponent("Chic Plaza Pair")}`}
+                        href={`/category/${encodeURIComponent(
+                          "Chic Plaza Pair"
+                        )}`}
                       />
                     </SwiperSlide>
                   </Swiper>
                 </CardBody>
                 <Divider />
                 <CardFooter className="bottom-0 flex-col items-center">
-                  {/* <Button className="bg-white text-black font-bold uppercase  px-3 py-3 rounded-lg text-sm"> */}
-                  {/* <Link
-                        className="absolute inset-0 z-10"
-                        href={`/category/Designer Kurti`}
-                      /> */}
                   <h4 className="font-bold truncate text-sm uppercase">
                     Chic Plaza Pair
                   </h4>
-                  {/* </Button> */}
                 </CardFooter>
               </Card>
             </div>
           </div>
-          {/* </BackgroundGradient> */}
 
-          {/* <BackgroundGradient className="rounded-[22px] bg-white dark:bg-zinc-900"> */}
           <div className="grid gap-4">
             <div className="grid gap-2.5 relative group">
               <Card isFooterBlurred className="" shadow="lg" isPressable>
-                {/* hover:scale-110 ease-in duration-300 */}
                 <CardBody className="p-0">
                   <Swiper
                     className="w-full bg-black/30 bg-blur"
                     modules={[Navigation, Pagination, Scrollbar, A11y]}
-                    // spaceBetween={50}
                     slidesPerView={1}
-                    // navigation
                     pagination={{ clickable: true, dynamicBullets: true }}
-                    // scrollbar={{ draggable: true }}
-                    // onSwiper={(swiper) => console.log(swiper)}
-                    // onSlideChange={() => console.log('slide change')}
                   >
                     <SwiperSlide className="">
                       <Image
@@ -318,44 +240,32 @@ export function Category() {
                       />
                       <Link
                         className="absolute inset-0 z-10"
-                        href={`/category/${encodeURIComponent("Trendy Indo Western Wear")}`}
+                        href={`/category/${encodeURIComponent(
+                          "Trendy Indo Western Wear"
+                        )}`}
                       />
                     </SwiperSlide>
                   </Swiper>
                 </CardBody>
                 <Divider />
                 <CardFooter className="bottom-0 flex-col items-center">
-                  {/* <Button className="bg-white text-black font-bold uppercase  px-3 py-3 rounded-lg text-sm"> */}
-                  {/* <Link
-                        className="absolute inset-0 z-10"
-                        href={`/category/Designer Kurti`}
-                      /> */}
                   <h4 className="font-bold truncate text-sm uppercase">
                     Trendy Indo Western
                   </h4>
-                  {/* </Button> */}
                 </CardFooter>
               </Card>
             </div>
           </div>
-          {/* </BackgroundGradient> */}
 
-          {/* <BackgroundGradient className="rounded-[22px] bg-white dark:bg-zinc-900"> */}
           <div className="grid gap-4">
             <div className="grid gap-2.5 relative group">
               <Card isFooterBlurred className="" shadow="lg" isPressable>
-                {/* hover:scale-110 ease-in duration-300 */}
                 <CardBody className="p-0">
                   <Swiper
                     className="w-full bg-black/30 bg-blur"
                     modules={[Navigation, Pagination, Scrollbar, A11y]}
-                    // spaceBetween={50}
                     slidesPerView={1}
-                    // navigation
                     pagination={{ clickable: true, dynamicBullets: true }}
-                    // scrollbar={{ draggable: true }}
-                    // onSwiper={(swiper) => console.log(swiper)}
-                    // onSlideChange={() => console.log('slide change')}
                   >
                     <SwiperSlide className="">
                       <Image
@@ -367,44 +277,32 @@ export function Category() {
                       />
                       <Link
                         className="absolute inset-0 z-10"
-                        href={`/category/${encodeURIComponent("Stylish Crop-Top")}`}
+                        href={`/category/${encodeURIComponent(
+                          "Stylish Crop-Top"
+                        )}`}
                       />
                     </SwiperSlide>
                   </Swiper>
                 </CardBody>
                 <Divider />
                 <CardFooter className="bottom-0 flex-col items-center">
-                  {/* <Button className="bg-white text-black font-bold uppercase  px-3 py-3 rounded-lg text-sm"> */}
-                  {/* <Link
-                        className="absolute inset-0 z-10"
-                        href={`/category/Designer Kurti`}
-                      /> */}
                   <h4 className="font-bold truncate text-sm uppercase">
                     Stylish Crop-Top
                   </h4>
-                  {/* </Button> */}
                 </CardFooter>
               </Card>
             </div>
           </div>
-          {/* </BackgroundGradient> */}
 
-          {/* <BackgroundGradient className="rounded-[22px] bg-white dark:bg-zinc-900"> */}
           <div className="grid gap-4">
             <div className="grid gap-2.5 relative group">
               <Card isFooterBlurred className="" shadow="lg" isPressable>
-                {/* hover:scale-110 ease-in duration-300 */}
                 <CardBody className="p-0">
                   <Swiper
                     className="w-full bg-black/30 bg-blur"
                     modules={[Navigation, Pagination, Scrollbar, A11y]}
-                    // spaceBetween={50}
                     slidesPerView={1}
-                    // navigation
                     pagination={{ clickable: true, dynamicBullets: true }}
-                    // scrollbar={{ draggable: true }}
-                    // onSwiper={(swiper) => console.log(swiper)}
-                    // onSlideChange={() => console.log('slide change')}
                   >
                     <SwiperSlide className="">
                       <Image
@@ -416,44 +314,32 @@ export function Category() {
                       />
                       <Link
                         className="absolute inset-0 z-10"
-                        href={`/category/${encodeURIComponent("Modern Cord Set")}`}
+                        href={`/category/${encodeURIComponent(
+                          "Modern Cord Set"
+                        )}`}
                       />
                     </SwiperSlide>
                   </Swiper>
                 </CardBody>
                 <Divider />
                 <CardFooter className="bottom-0 flex-col items-center">
-                  {/* <Button className="bg-white text-black font-bold uppercase  px-3 py-3 rounded-lg text-sm"> */}
-                  {/* <Link
-                        className="absolute inset-0 z-10"
-                        href={`/category/Designer Kurti`}
-                      /> */}
                   <h4 className="font-bold truncate text-sm uppercase">
                     Modern Cord Set
                   </h4>
-                  {/* </Button> */}
                 </CardFooter>
               </Card>
             </div>
           </div>
-          {/* </BackgroundGradient> */}
 
-          {/* <BackgroundGradient className="rounded-[22px] bg-white dark:bg-zinc-900"> */}
           <div className="grid gap-4">
             <div className="grid gap-2.5 relative group">
               <Card isFooterBlurred className="" shadow="lg" isPressable>
-                {/* hover:scale-110 ease-in duration-300 */}
                 <CardBody className="p-0">
                   <Swiper
                     className="w-full bg-black/30 bg-blur"
                     modules={[Navigation, Pagination, Scrollbar, A11y]}
-                    // spaceBetween={50}
                     slidesPerView={1}
-                    // navigation
                     pagination={{ clickable: true, dynamicBullets: true }}
-                    // scrollbar={{ draggable: true }}
-                    // onSwiper={(swiper) => console.log(swiper)}
-                    // onSlideChange={() => console.log('slide change')}
                   >
                     <SwiperSlide className="">
                       <Image
@@ -465,44 +351,32 @@ export function Category() {
                       />
                       <Link
                         className="absolute inset-0 z-10"
-                        href={`/category/${encodeURIComponent("Graceful Tunics Collection")}`}
+                        href={`/category/${encodeURIComponent(
+                          "Graceful Tunics Collection"
+                        )}`}
                       />
                     </SwiperSlide>
                   </Swiper>
                 </CardBody>
                 <Divider />
                 <CardFooter className="bottom-0 flex-col items-center">
-                  {/* <Button className="bg-white text-black font-bold uppercase  px-3 py-3 rounded-lg text-sm"> */}
-                  {/* <Link
-                        className="absolute inset-0 z-10"
-                        href={`/category/Designer Kurti`}
-                      /> */}
                   <h4 className="font-bold truncate text-sm uppercase">
                     Graceful Tunics
                   </h4>
-                  {/* </Button> */}
                 </CardFooter>
               </Card>
             </div>
           </div>
-          {/* </BackgroundGradient> */}
 
-          {/* <BackgroundGradient className="rounded-[22px] bg-white dark:bg-zinc-900"> */}
           <div className="grid gap-4">
             <div className="grid gap-2.5 relative group">
               <Card isFooterBlurred className="" shadow="lg" isPressable>
-                {/* hover:scale-110 ease-in duration-300 */}
                 <CardBody className="p-0">
                   <Swiper
                     className="w-full bg-black/30 bg-blur"
                     modules={[Navigation, Pagination, Scrollbar, A11y]}
-                    // spaceBetween={50}
                     slidesPerView={1}
-                    // navigation
                     pagination={{ clickable: true, dynamicBullets: true }}
-                    // scrollbar={{ draggable: true }}
-                    // onSwiper={(swiper) => console.log(swiper)}
-                    // onSlideChange={() => console.log('slide change')}
                   >
                     <SwiperSlide className="">
                       <Image
@@ -512,39 +386,153 @@ export function Category() {
                         src={img9}
                         width={350}
                       />
-                      {/* <video
-                        src="/videos/video1.mp4"
-                        className="object-cover aspect-[3/4] w-full opacity-90 transition-opacity gap-y-3"
-                        autoPlay
-                        loop
-                        muted
-                        playsInline
-                      /> */}
+
                       <Link
                         className="absolute inset-0 z-10"
-                        href={`/category/${encodeURIComponent("Luxury Dripping Sarees")}`}
+                        href={`/category/${encodeURIComponent(
+                          "Luxury Dripping Sarees"
+                        )}`}
                       />
                     </SwiperSlide>
                   </Swiper>
                 </CardBody>
                 <Divider />
                 <CardFooter className="bottom-0 flex-col items-center">
-                  {/* <Button className="bg-white text-black font-bold uppercase  px-3 py-3 rounded-lg text-sm"> */}
-                  {/* <Link
-                        className="absolute inset-0 z-10"
-                        href={`/category/Designer Kurti`}
-                      /> */}
                   <h4 className="font-bold uppercase">
                     Luxury Dripping Sarees
                   </h4>
-                  {/* </Button> */}
                 </CardFooter>
               </Card>
             </div>
           </div>
-          {/* </BackgroundGradient> */}
         </div>
       </div>
     </section>
   );
+}
+*/
+
+"use client"
+import Link from "next/link"
+import Image from "next/image"
+import { Card, CardBody, CardFooter, Divider } from "@nextui-org/react"
+import { Swiper, SwiperSlide } from "swiper/react"
+import { A11y, Navigation, Pagination, Scrollbar } from "swiper/modules"
+import { Pacifico } from "next/font/google"
+import { Libre_Baskerville } from "next/font/google"
+
+// Import Swiper styles
+import "swiper/css"
+import "swiper/css/navigation"
+import "swiper/css/pagination"
+import "swiper/css/scrollbar"
+
+// Import images
+import img1 from "../images/designer-kurti.jpg"
+import img2 from "../images/pant-pair.jpg"
+import img3 from "../images/Gowns.jpg"
+import img4 from "../images/plaza-pair.jpg"
+import img5 from "../images/Indo-Western.jpg"
+import img6 from "../images/crep-top.jpg"
+import img7 from "../images/cord-set.jpg"
+import img8 from "../images/tunic.jpg"
+import img9 from "../images/saree.jpg"
+
+const pacifico = Pacifico({ subsets: ["latin"], weight: "400" })
+const libre = Libre_Baskerville({ subsets: ["latin"], weight: "700" })
+
+const categories = [
+  { title: "Designer Kurti", image: img1, slug: "Designer Kurti" },
+  { title: "Elegant Pant Pair", image: img2, slug: "Elegant Pant Pair" },
+  { title: "Royal Gown", image: img3, slug: "Royal Gown Collection" },
+  { title: "Chic Plaza Pair", image: img4, slug: "Chic Plaza Pair" },
+  { title: "Trendy Indo Western", image: img5, slug: "Trendy Indo Western-Wear" },
+  { title: "Stylish Crop-Top", image: img6, slug: "Stylish Crop Top" },
+  { title: "Modern Cord Set", image: img7, slug: "Modern Cord Set" },
+  { title: "Graceful Tunics", image: img8, slug: "Graceful Tunics Collection" },
+  { title: "Luxury Dripping Sarees", image: img9, slug: "Luxury Dripping Sarees" },
+]
+
+const CategoryCard = ({ title, image, slug }) => {
+  return (
+    <div className="grid gap-4">
+      <div className="grid gap-2.5 relative group">
+        <Card isFooterBlurred className="" shadow="lg" isPressable>
+                <CardBody className="p-0">
+                  <Swiper
+                    className="w-full bg-black/30 bg-blur"
+                    modules={[Navigation, Pagination, Scrollbar, A11y]}
+                    slidesPerView={1}
+                    pagination={{ clickable: true, dynamicBullets: true }}
+                  >
+                    <SwiperSlide className="">
+                      <Image
+                        alt="Kurti"
+                        className="object-cover w-full opacity-90 transition-opacity gap-y-3"
+                        height={350}
+                        src={image || "/placeholder.svg"}
+                        width={350}
+                      />
+
+                      <Link
+                        className="absolute inset-0 z-10"
+                        href={`/category/${encodeURIComponent(slug)}`}
+                      />
+                    </SwiperSlide>
+                  </Swiper>
+                </CardBody>
+                <Divider />
+                <CardFooter className="bottom-0 flex-col items-center">
+                  <h4 className="font-bold uppercase">
+                  {title}
+                  </h4>
+                </CardFooter>
+              </Card>
+      </div>
+    </div>
+  )
+}
+
+export function Category() {
+  return (
+    <section className="w-full flex justify-center py-8 overflow-hidden">
+      <div className="container grid gap-6 md:gap-12 px-4 md:px-6">
+        <div className="text-center items-center gap-4 md:gap-8">
+          <div className="grid gap-4">
+            <div className={pacifico.className}>
+              <h1 className="text-4xl font-bold">Shop by Category</h1>
+            </div>
+            <div className={libre.className}>
+              <p className="text-gray-500">Find Your Style, Embrace Fashion Forever!</p>
+            </div>
+          </div>
+        </div>
+
+        <Swiper
+          modules={[Navigation, Pagination, Scrollbar, A11y]}
+          spaceBetween={20}
+          pagination={{ clickable: true, dynamicBullets: true }}
+          // navigation
+          // scrollbar={{ draggable: true }}
+          breakpoints={{
+            0: { slidesPerView: 2 },
+            640: { slidesPerView: 2 },
+            768: { slidesPerView: 3 },
+            1024: { slidesPerView: 4 },
+          }}
+          className="w-full"
+        >
+          {categories.map((category, index) => (
+            <SwiperSlide key={index} className="flex justify-center p-2">
+              <CategoryCard
+                title={category.title}
+                image={category.image}
+                slug={category.slug}
+              />
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </div>
+    </section>
+  )
 }

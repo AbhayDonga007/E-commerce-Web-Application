@@ -171,7 +171,6 @@ const DashBoard = (props: Props) => {
       <CustomerExp />
       <Newsletter />
       <QualityProduct />
-      <Footer />
     </>
   );
 };
